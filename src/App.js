@@ -1,0 +1,759 @@
+import { useState, useEffect, useRef } from "react";
+
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const COMPANIES = [
+  "Dachdeckerei Müller & Söhne", "Bäckerei Hofmann", "Elektro Schneider GmbH",
+  "Metallbau Roth", "Autohaus Weber", "Friseur Haarsalon Klein",
+  "IT Solutions Bergstraße", "Physiotherapie Zentrum", "Sanitär & Heizung Braun",
+  "Steuerberatung Hoffmann", "Apotheke am Marktplatz", "Schreinerei Vogel",
+  "Kfz-Werkstatt Becker", "Logistik Zentrum Südhessen", "Gärtnerei Blumenreich",
+];
+
+const KLASSEN = [
+  "8a", "8b", "8c", "9a", "9b", "9c", "10a", "10b", "10c",
+];
+
+const SCHULARTEN = ["Hauptschule", "Realschule", "Gymnasium"];
+
+const BEYOND_WORKSHOPS = [
+  { icon: "💰", title: "Finanzworkshop", desc: "Konten, Steuern, Altersvorsorge" },
+  { icon: "🧠", title: "Persönlichkeitsworkshop", desc: "Stärken erkennen & nutzen" },
+  { icon: "🏛️", title: "Demokratieworkshop", desc: "Im Landtag vor Ort" },
+  { icon: "📝", title: "Bewerbungsworkshop", desc: "Anschreiben, Lebenslauf, Interview" },
+  { icon: "👔", title: "Style-Workshop", desc: "Auftreten & Wirkung" },
+];
+
+// ─── STYLES ──────────────────────────────────────────────────────────────────
+const G = "#1a3a2a";
+const LIME = "#c8f060";
+const CREAM = "#f5f0e8";
+const WARM = "#e8d8c0";
+const MUTED = "#6b6b5a";
+
+const css = `
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: ${CREAM}; color: ${G}; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: ${CREAM}; } ::-webkit-scrollbar-thumb { background: rgba(26,58,42,.3); border-radius: 3px; }
+  .serif { font-family: 'Instrument Serif', serif; }
+  .italic { font-style: italic; }
+  
+  /* Nav */
+  .nav { position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:.9rem 5vw; background:rgba(245,240,232,.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(26,58,42,.1); }
+  .nav-logo { font-family:'Instrument Serif',serif; font-size:1.3rem; color:${G}; cursor:pointer; }
+  .nav-logo span { color:#7ab828; }
+  .nav-links { display:flex; gap:1.5rem; }
+  .nav-link { font-size:.82rem; font-weight:500; letter-spacing:.04em; text-transform:uppercase; color:${MUTED}; cursor:pointer; border:none; background:none; transition:color .2s; }
+  .nav-link:hover, .nav-link.active { color:${G}; }
+  .nav-cta { background:${G}; color:${LIME}; padding:.5rem 1.2rem; border-radius:2rem; font-size:.8rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; border:none; cursor:pointer; transition:all .2s; }
+  .nav-cta:hover { background:#2d5c41; transform:translateY(-1px); }
+  .nav-admin { background:transparent; color:${MUTED}; padding:.5rem 1rem; border-radius:2rem; font-size:.78rem; font-weight:500; border:1px solid rgba(107,107,90,.3); cursor:pointer; transition:all .2s; margin-left:.5rem; }
+  .nav-admin:hover { border-color:${G}; color:${G}; }
+
+  /* Pages */
+  .page { padding-top: 4.5rem; min-height: 100vh; }
+
+  /* Hero */
+  .hero { display:grid; grid-template-columns:1fr 1fr; min-height:calc(100vh - 4.5rem); }
+  .hero-l { display:flex; flex-direction:column; justify-content:center; padding:5vw 4vw 5vw 8vw; }
+  .hero-tag { display:inline-flex; align-items:center; gap:.4rem; background:${LIME}; color:${G}; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.35rem .8rem; border-radius:2rem; margin-bottom:1.5rem; width:fit-content; }
+  .hero-h1 { font-family:'Instrument Serif',serif; font-size:clamp(2.5rem,4.5vw,4.8rem); line-height:1.06; letter-spacing:-.02em; color:${G}; margin-bottom:1.2rem; }
+  .hero-h1 em { font-style:italic; color:#7ab828; }
+  .hero-sub { font-size:1rem; line-height:1.7; color:${MUTED}; max-width:42ch; margin-bottom:2rem; }
+  .hero-btns { display:flex; gap:.8rem; flex-wrap:wrap; }
+  .btn-primary { background:${G}; color:${LIME}; padding:.8rem 1.6rem; border-radius:2rem; font-size:.88rem; font-weight:700; border:none; cursor:pointer; transition:all .2s; }
+  .btn-primary:hover { background:#2d5c41; transform:translateY(-2px); box-shadow:0 8px 24px rgba(26,58,42,.2); }
+  .btn-secondary { background:transparent; color:${G}; padding:.8rem 1.6rem; border-radius:2rem; font-size:.88rem; font-weight:600; border:1.5px solid ${G}; cursor:pointer; transition:all .2s; }
+  .btn-secondary:hover { background:${G}; color:${LIME}; }
+  .hero-stats { display:flex; gap:2rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(26,58,42,.12); }
+  .stat-n { font-family:'Instrument Serif',serif; font-size:2.4rem; color:${G}; line-height:1; }
+  .stat-n span { color:#7ab828; }
+  .stat-l { font-size:.76rem; color:${MUTED}; margin-top:.25rem; }
+  .hero-r { background:${G}; display:flex; align-items:flex-end; position:relative; overflow:hidden; }
+  .hero-r-inner { padding:2.5rem 2.5rem 3.5rem; position:relative; z-index:2; width:100%; }
+  .hero-quote { font-family:'Instrument Serif',serif; font-size:clamp(1.3rem,2vw,1.8rem); color:${CREAM}; line-height:1.4; font-style:italic; margin-bottom:1.2rem; }
+  .hero-quote-attr { font-size:.78rem; color:rgba(245,240,232,.45); letter-spacing:.06em; text-transform:uppercase; }
+  .hero-pill { background:rgba(200,240,96,.1); border:1px solid rgba(200,240,96,.22); border-radius:.8rem; padding:1rem 1.2rem; margin-top:1.2rem; max-width:260px; }
+  .pill-l { font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(200,240,96,.55); margin-bottom:.25rem; }
+  .pill-v { font-family:'Instrument Serif',serif; font-size:1.4rem; color:${LIME}; }
+  .pill-s { font-size:.76rem; color:rgba(245,240,232,.45); }
+  .hero-deco { position:absolute; top:-60px; right:-60px; width:280px; height:280px; border-radius:50%; border:1px solid rgba(200,240,96,.12); }
+  .hero-deco::before { content:''; position:absolute; inset:36px; border-radius:50%; border:1px solid rgba(200,240,96,.07); }
+
+  /* Section */
+  .section { padding:5rem 8vw; }
+  .section.dark { background:${G}; }
+  .section.warm { background:${WARM}; }
+  .section.white { background:#fff; }
+  .section-label { font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#7ab828; margin-bottom:.8rem; }
+  .section.dark .section-label { color:rgba(200,240,96,.55); }
+  .section-h2 { font-family:'Instrument Serif',serif; font-size:clamp(1.8rem,3vw,3rem); color:${G}; line-height:1.15; letter-spacing:-.02em; margin-bottom:1rem; }
+  .section.dark .section-h2 { color:${CREAM}; }
+  .section-lead { font-size:.95rem; line-height:1.75; color:${MUTED}; max-width:58ch; margin-bottom:3rem; }
+  .section.dark .section-lead { color:rgba(245,240,232,.6); }
+
+  /* Cards grid */
+  .card-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+  .card { background:#fff; border-radius:1.2rem; padding:2rem; border:1px solid rgba(26,58,42,.07); transition:transform .25s,box-shadow .25s; }
+  .card:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(26,58,42,.1); }
+  .card.dark-card { background:rgba(200,240,96,.06); border:1px solid rgba(200,240,96,.12); }
+  .card.featured { background:${G}; }
+  .card.featured .card-title { color:${LIME}; }
+  .card.featured .card-text { color:rgba(245,240,232,.6); }
+  .card-num { font-family:'Instrument Serif',serif; font-size:4.5rem; color:${LIME}; line-height:1; font-style:italic; float:right; }
+  .card.featured .card-num { color:rgba(200,240,96,.18); }
+  .card-icon { font-size:1.8rem; margin-bottom:1rem; }
+  .card-title { font-weight:700; font-size:1rem; color:${G}; margin-bottom:.6rem; }
+  .card-text { font-size:.85rem; line-height:1.7; color:${MUTED}; }
+  .card-text.light { color:rgba(245,240,232,.6); }
+
+  /* Stats row */
+  .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-bottom:3rem; }
+  .stat-card { background:#fff; border-radius:1.2rem; padding:1.8rem 1.5rem; text-align:center; border:1px solid rgba(26,58,42,.06); transition:transform .2s; }
+  .stat-card:hover { transform:translateY(-3px); }
+  .stat-card.accent { background:${G}; }
+  .stat-card.accent .ec-n { color:${LIME}; }
+  .stat-card.accent .ec-l { color:rgba(245,240,232,.55); }
+  .ec-n { font-family:'Instrument Serif',serif; font-size:3.2rem; color:${G}; line-height:1; }
+  .ec-l { font-size:.78rem; color:${MUTED}; margin-top:.4rem; line-height:1.4; }
+
+  /* Steps */
+  .steps { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; position:relative; margin-top:.5rem; }
+  .step { text-align:center; padding:0 .8rem; }
+  .step-dot { width:2.2rem; height:2.2rem; border-radius:50%; background:${G}; color:${LIME}; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.82rem; margin:0 auto 1rem; }
+  .step-title { font-weight:700; font-size:.85rem; color:${G}; margin-bottom:.4rem; }
+  .step-text { font-size:.76rem; color:${MUTED}; line-height:1.5; }
+
+  /* Beyond list */
+  .beyond-item { background:#fff; border-radius:.8rem; padding:1rem 1.3rem; display:flex; align-items:center; gap:.8rem; font-weight:500; font-size:.9rem; color:${G}; border:1px solid rgba(26,58,42,.07); transition:all .2s; cursor:default; margin-bottom:.7rem; }
+  .beyond-item:hover { background:${G}; color:${LIME}; transform:translateX(4px); }
+  .bi-icon { font-size:1.2rem; flex-shrink:0; }
+
+  /* Win-win */
+  .winwin { background:linear-gradient(135deg,#7ab828,${G} 60%); border-radius:1.4rem; padding:2.5rem 3rem; display:flex; align-items:center; gap:3rem; }
+  .winwin-text h3 { font-family:'Instrument Serif',serif; font-size:1.6rem; color:${CREAM}; margin-bottom:.7rem; font-style:italic; }
+  .winwin-text p { font-size:.87rem; color:rgba(245,240,232,.65); line-height:1.65; }
+  .winwin-badges { display:flex; flex-direction:column; gap:.6rem; flex-shrink:0; }
+  .wbadge { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius:.5rem; padding:.5rem 1rem; font-size:.8rem; color:${CREAM}; font-weight:600; white-space:nowrap; }
+
+  /* ─── FORM PAGE ─── */
+  .form-page { max-width:680px; margin:0 auto; padding:3rem 2rem 6rem; }
+  .form-header { margin-bottom:2.5rem; }
+  .form-h1 { font-family:'Instrument Serif',serif; font-size:2.4rem; color:${G}; margin-bottom:.6rem; }
+  .form-h1 em { font-style:italic; color:#7ab828; }
+  .form-lead { font-size:.95rem; color:${MUTED}; line-height:1.65; }
+
+  .form-card { background:#fff; border-radius:1.2rem; padding:2rem; margin-bottom:1.2rem; border:1px solid rgba(26,58,42,.08); }
+  .form-section-title { font-weight:700; font-size:.95rem; color:${G}; margin-bottom:1.4rem; display:flex; align-items:center; gap:.5rem; }
+  .form-section-title .num { background:${G}; color:${LIME}; width:1.6rem; height:1.6rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; flex-shrink:0; }
+
+  .field { margin-bottom:1.1rem; }
+  .field label { display:block; font-size:.8rem; font-weight:600; color:${G}; margin-bottom:.4rem; letter-spacing:.02em; }
+  .field input, .field select { width:100%; padding:.65rem .9rem; border:1.5px solid rgba(26,58,42,.15); border-radius:.65rem; font-family:'DM Sans',sans-serif; font-size:.9rem; color:${G}; background:#fff; transition:border-color .2s,box-shadow .2s; outline:none; }
+  .field input:focus, .field select:focus { border-color:${G}; box-shadow:0 0 0 3px rgba(26,58,42,.08); }
+  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+  .company-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; max-height:340px; overflow-y:auto; padding-right:.3rem; }
+  .company-btn { padding:.6rem .9rem; border-radius:.65rem; font-size:.82rem; font-weight:500; border:1.5px solid rgba(26,58,42,.15); background:#fff; color:${MUTED}; cursor:pointer; text-align:left; transition:all .18s; display:flex; align-items:center; gap:.5rem; }
+  .company-btn:hover { border-color:${G}; color:${G}; }
+  .company-btn.selected { border-color:${G}; background:${G}; color:${LIME}; font-weight:600; }
+  .company-btn .check { width:1rem; height:1rem; border-radius:50%; border:1.5px solid currentColor; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.6rem; }
+  .company-btn.selected .check { background:${LIME}; border-color:${LIME}; color:${G}; }
+  .company-count { font-size:.78rem; color:${MUTED}; margin-bottom:.7rem; }
+  .company-count span { color:${G}; font-weight:700; }
+
+  .max-warn { background:rgba(200,240,96,.15); border:1px solid rgba(122,184,40,.3); border-radius:.6rem; padding:.6rem .9rem; font-size:.8rem; color:#3b6d11; margin-bottom:.7rem; display:flex; gap:.4rem; align-items:center; }
+
+  .submit-btn { width:100%; padding:1rem; background:${G}; color:${LIME}; border:none; border-radius:.8rem; font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; transition:all .2s; margin-top:.5rem; }
+  .submit-btn:hover { background:#2d5c41; transform:translateY(-1px); box-shadow:0 8px 20px rgba(26,58,42,.2); }
+  .submit-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
+
+  /* Success */
+  .success-screen { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:4rem 2rem; min-height:60vh; }
+  .success-icon { font-size:4rem; margin-bottom:1.5rem; }
+  .success-h2 { font-family:'Instrument Serif',serif; font-size:2.2rem; color:${G}; margin-bottom:.8rem; }
+  .success-p { color:${MUTED}; font-size:.95rem; line-height:1.65; max-width:44ch; margin-bottom:2rem; }
+  .success-tags { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:2rem; }
+  .success-tag { background:${G}; color:${LIME}; padding:.3rem .8rem; border-radius:2rem; font-size:.78rem; font-weight:600; }
+
+  /* ─── ADMIN ─── */
+  .admin-lock { max-width:380px; margin:0 auto; padding:5rem 2rem; text-align:center; }
+  .admin-lock-icon { font-size:3rem; margin-bottom:1.2rem; }
+  .admin-lock h2 { font-family:'Instrument Serif',serif; font-size:1.8rem; color:${G}; margin-bottom:.5rem; }
+  .admin-lock p { font-size:.88rem; color:${MUTED}; margin-bottom:1.5rem; }
+  .lock-input { width:100%; padding:.7rem 1rem; border:1.5px solid rgba(26,58,42,.2); border-radius:.7rem; font-family:'DM Sans',sans-serif; font-size:1rem; color:${G}; background:#fff; outline:none; text-align:center; letter-spacing:.1em; margin-bottom:.8rem; }
+  .lock-input:focus { border-color:${G}; box-shadow:0 0 0 3px rgba(26,58,42,.08); }
+  .lock-btn { width:100%; padding:.75rem; background:${G}; color:${LIME}; border:none; border-radius:.7rem; font-family:'DM Sans',sans-serif; font-size:.92rem; font-weight:700; cursor:pointer; transition:background .2s; }
+  .lock-btn:hover { background:#2d5c41; }
+  .lock-error { font-size:.8rem; color:#c0392b; margin-top:.4rem; }
+
+  .admin-page { padding:1.5rem 5vw 4rem; }
+  .admin-topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
+  .admin-title { font-family:'Instrument Serif',serif; font-size:1.8rem; color:${G}; }
+  .admin-logout { background:transparent; border:1px solid rgba(26,58,42,.2); color:${MUTED}; padding:.4rem .9rem; border-radius:.5rem; font-size:.8rem; cursor:pointer; transition:all .2s; }
+  .admin-logout:hover { border-color:${G}; color:${G}; }
+
+  .admin-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; }
+  .admin-stat { background:#fff; border-radius:1rem; padding:1.4rem; border:1px solid rgba(26,58,42,.07); }
+  .admin-stat.accent { background:${G}; }
+  .admin-stat.accent .as-n { color:${LIME}; }
+  .admin-stat.accent .as-l { color:rgba(245,240,232,.55); }
+  .as-n { font-family:'Instrument Serif',serif; font-size:2.4rem; color:${G}; line-height:1; }
+  .as-l { font-size:.75rem; color:${MUTED}; margin-top:.25rem; }
+
+  .admin-filters { display:flex; gap:.7rem; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; }
+  .filter-input { padding:.5rem .9rem; border:1.5px solid rgba(26,58,42,.15); border-radius:.6rem; font-family:'DM Sans',sans-serif; font-size:.85rem; color:${G}; background:#fff; outline:none; }
+  .filter-input:focus { border-color:${G}; }
+  .filter-select { padding:.5rem .9rem; border:1.5px solid rgba(26,58,42,.15); border-radius:.6rem; font-family:'DM Sans',sans-serif; font-size:.85rem; color:${G}; background:#fff; outline:none; }
+
+  .table-wrap { background:#fff; border-radius:1.2rem; border:1px solid rgba(26,58,42,.07); overflow:hidden; }
+  table { width:100%; border-collapse:collapse; }
+  thead tr { background:${G}; }
+  thead th { padding:.7rem 1rem; text-align:left; font-size:.75rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:${LIME}; }
+  tbody tr { border-bottom:1px solid rgba(26,58,42,.06); transition:background .15s; }
+  tbody tr:last-child { border-bottom:none; }
+  tbody tr:hover { background:rgba(26,58,42,.03); }
+  tbody td { padding:.75rem 1rem; font-size:.85rem; color:${G}; }
+  .td-muted { color:${MUTED}; font-size:.8rem; }
+  .td-companies { display:flex; flex-wrap:wrap; gap:.3rem; }
+  .td-tag { background:rgba(26,58,42,.08); border-radius:.4rem; padding:.15rem .5rem; font-size:.72rem; font-weight:600; color:${G}; }
+  .status-badge { display:inline-block; padding:.2rem .6rem; border-radius:2rem; font-size:.72rem; font-weight:700; }
+  .status-badge.new { background:${LIME}; color:${G}; }
+  .status-badge.done { background:rgba(26,58,42,.1); color:${G}; }
+  .empty-state { padding:4rem; text-align:center; color:${MUTED}; font-size:.9rem; }
+  .empty-icon { font-size:2.5rem; margin-bottom:.8rem; }
+  .demo-notice { background:rgba(200,240,96,.15); border:1px solid rgba(122,184,40,.3); border-radius:.8rem; padding:.9rem 1.2rem; font-size:.82rem; color:#3b6d11; margin-bottom:1.5rem; display:flex; gap:.5rem; align-items:flex-start; }
+
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;}
+    .hero-r{min-height:300px;}
+    .card-grid-3{grid-template-columns:1fr;}
+    .stats-row{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .admin-stats{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .field-row{grid-template-columns:1fr;}
+    .company-grid{grid-template-columns:1fr;}
+    .winwin{flex-direction:column;gap:1.5rem;}
+    .hero-l{padding:3rem 5vw;}
+  }
+`;
+
+// ─── SHARED COMPONENTS ───────────────────────────────────────────────────────
+const SectionLabel = ({ children, dark }) => (
+  <div className="section-label">{children}</div>
+);
+
+// ─── HOME PAGE ────────────────────────────────────────────────────────────────
+function HomePage({ onAnmeldung }) {
+  return (
+    <div>
+      {/* HERO */}
+      <div className="hero">
+        <div className="hero-l">
+          <div className="hero-tag">📍 Bürstadt · Kreis Bergstraße</div>
+          <h1 className="hero-h1">
+            Mehr als nur<br /><em>Berufs&shy;orientierung.</em>
+          </h1>
+          <p className="hero-sub">
+            Wir verbinden Schülerinnen und Schüler mit lokalen Unternehmen –
+            praxisnah, auf Augenhöhe und mit echtem Mehrwert.
+          </p>
+          <div className="hero-btns">
+            <button className="btn-primary" onClick={onAnmeldung}>
+              Jetzt anmelden →
+            </button>
+            <button className="btn-secondary" onClick={() => document.getElementById('sec-how')?.scrollIntoView({ behavior: 'smooth' })}>
+              Mehr erfahren
+            </button>
+          </div>
+          <div className="hero-stats">
+            <div><div className="stat-n">40<span>+</span></div><div className="stat-l">Partnerunternehmen</div></div>
+            <div><div className="stat-n">280<span>+</span></div><div className="stat-l">Schüler erreicht</div></div>
+            <div><div className="stat-n">15</div><div className="stat-l">Teammitglieder</div></div>
+          </div>
+        </div>
+        <div className="hero-r">
+          <div className="hero-deco" />
+          <div className="hero-r-inner">
+            <p className="hero-quote">
+              „Oft muss man nicht wegziehen – der richtige Beruf ist direkt vor der Haustür."
+            </p>
+            <p className="hero-quote-attr">— FitForFuture Gründer</p>
+            <div className="hero-pill">
+              <div className="pill-l">Zyklus 2025 · Ergebnis</div>
+              <div className="pill-v">18 Workshops</div>
+              <div className="pill-s">über 400 Anmeldungen im ersten Zyklus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* HOW */}
+      <div className="section" id="sec-how">
+        <SectionLabel>So funktioniert's</SectionLabel>
+        <h2 className="section-h2">Drei Säulen für <em className="italic">echte Orientierung</em></h2>
+        <p className="section-lead">Praxis in Unternehmen, ergänzende Workshops und persönliches Mentoring greifen ineinander.</p>
+        <div className="card-grid-3">
+          <div className="card featured">
+            <div className="card-num">1</div>
+            <div className="card-icon">🏭</div>
+            <div className="card-title">Unternehmens-Workshops</div>
+            <div className="card-text light">Schüler besuchen lokale Betriebe in Kleingruppen (5–8 Personen) und erleben Ausbildungsberufe hautnah.</div>
+          </div>
+          <div className="card">
+            <div className="card-num" style={{ color: LIME }}>2</div>
+            <div className="card-icon">✨</div>
+            <div className="card-title">Beyond-School-Workshops</div>
+            <div className="card-text">Finanzwissen, Persönlichkeit, Demokratie, Bewerbung – Themen, die das Schulsystem nicht abdeckt.</div>
+          </div>
+          <div className="card">
+            <div className="card-num" style={{ color: LIME }}>3</div>
+            <div className="card-icon">💬</div>
+            <div className="card-title">Mentoring-Programm</div>
+            <div className="card-text">Mentoren begleiten Schüler individuell über längere Zeit bei Berufs- und Studienwahl sowie persönlichen Fragen.</div>
+          </div>
+        </div>
+      </div>
+
+      {/* ABLAUF */}
+      <div className="section warm">
+        <SectionLabel>Der Workshoptag</SectionLabel>
+        <h2 className="section-h2">Schritt für Schritt <em className="italic">gemeinsam</em></h2>
+        <div className="steps">
+          {[
+            ["Klassen-vorstellung", "FFF stellt sich in 8.–10. Klassen vor"],
+            ["Anmeldung", "SuS wählen bis zu 5 Wunschunternehmen"],
+            ["Workshop-Tag", "Praxiserlebnis, Gespräche, Verpflegung"],
+            ["Rückkehr", "FFF bringt SuS zurück zur Schule"],
+            ["Evaluation", "Digitale Umfrage vor & nach dem Workshop"],
+          ].map(([t, d], i) => (
+            <div className="step" key={i}>
+              <div className="step-dot">{i + 1}</div>
+              <div className="step-title">{t}</div>
+              <div className="step-text">{d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* BEYOND */}
+      <div className="section">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
+          <div>
+            <SectionLabel>Beyond School</SectionLabel>
+            <h2 className="section-h2">Was die Schule <em className="italic">nicht lehrt</em></h2>
+            <p className="section-lead">Ergänzende Workshops für ganzheitliches Bewusstsein.</p>
+            {BEYOND_WORKSHOPS.map((w, i) => (
+              <div className="beyond-item" key={i}>
+                <span className="bi-icon">{w.icon}</span>
+                <span>{w.title}</span>
+                <span style={{ fontSize: ".78rem", color: MUTED, marginLeft: "auto" }}>{w.desc}</span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <p style={{ fontFamily: "'Instrument Serif',serif", fontSize: "clamp(1.6rem,3vw,2.8rem)", color: G, lineHeight: 1.25, fontStyle: "italic", marginBottom: "1.2rem" }}>
+              „Ganzheitliche Bildung schafft ein erweitertes Bewusstsein fürs Leben."
+            </p>
+            <p style={{ fontSize: ".9rem", color: MUTED, lineHeight: 1.7 }}>
+              Wir bereiten Schülerinnen und Schüler nicht nur auf den Beruf vor – sondern auf das Leben als Ganzes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ERFOLGE */}
+      <div className="section warm">
+        <SectionLabel>Zahlen & Erfolge</SectionLabel>
+        <h2 className="section-h2">Was wir bisher <em className="italic">erreicht haben</em></h2>
+        <div className="stats-row">
+          <div className="stat-card accent"><div className="ec-n">18</div><div className="ec-l">Workshops im ersten Zyklus 2025</div></div>
+          <div className="stat-card"><div className="ec-n">400+</div><div className="ec-l">Anmeldungen von SuS</div></div>
+          <div className="stat-card"><div className="ec-n">280</div><div className="ec-l">Teilnehmende Schülerinnen & Schüler</div></div>
+          <div className="stat-card"><div className="ec-n">40+</div><div className="ec-l">Partnerunternehmen gewonnen</div></div>
+        </div>
+        <div className="winwin">
+          <div className="winwin-text" style={{ flex: 1 }}>
+            <h3>Eine echte Win-Win-Situation</h3>
+            <p>Durch die Workshops wurden bereits längere Praktika vereinbart. Die Hemmschwelle zwischen Schülerinnen und Unternehmen sinkt – Kontakte entstehen, Bewerbungen folgen.</p>
+          </div>
+          <div className="winwin-badges">
+            <div className="wbadge">✓ Schüler profitieren</div>
+            <div className="wbadge">✓ Unternehmen profitieren</div>
+            <div className="wbadge">✓ Region profitiert</div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA FOOTER */}
+      <div className="section dark" style={{ textAlign: "center" }}>
+        <SectionLabel>Mitmachen</SectionLabel>
+        <h2 className="section-h2" style={{ marginBottom: "1rem" }}>Bereit für <em className="italic">deine Zukunft?</em></h2>
+        <p style={{ color: "rgba(245,240,232,.6)", marginBottom: "2rem", fontSize: ".95rem" }}>Meld dich an und erlebe Ausbildungsberufe hautnah – direkt in deiner Stadt.</p>
+        <button className="btn-primary" onClick={onAnmeldung} style={{ fontSize: "1rem", padding: ".9rem 2.2rem" }}>
+          Jetzt Workshop-Platz sichern →
+        </button>
+        <p style={{ color: "rgba(245,240,232,.3)", fontSize: ".78rem", marginTop: "2.5rem" }}>
+          FitForFuture · Bürstadt · Unterstützt durch Bürgerstiftung Bürstadt
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── ANMELDUNG PAGE ───────────────────────────────────────────────────────────
+function AnmeldungPage({ onSuccess }) {
+  const [form, setForm] = useState({
+    vorname: "", nachname: "", klasse: "", schulart: "", email: "", telefon: "",
+  });
+  const [selected, setSelected] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+
+  const toggleCompany = (c) => {
+    if (selected.includes(c)) setSelected(selected.filter(x => x !== c));
+    else if (selected.length < 5) setSelected([...selected, c]);
+  };
+
+  const validate = () => {
+    const e = {};
+    if (!form.vorname.trim()) e.vorname = "Pflichtfeld";
+    if (!form.nachname.trim()) e.nachname = "Pflichtfeld";
+    if (!form.klasse) e.klasse = "Bitte auswählen";
+    if (!form.schulart) e.schulart = "Bitte auswählen";
+    if (!form.email.trim() || !form.email.includes("@")) e.email = "Gültige E-Mail angeben";
+    if (selected.length === 0) e.companies = "Bitte mindestens 1 Unternehmen wählen";
+    return e;
+  };
+
+  const submit = () => {
+    const e = validate();
+    setErrors(e);
+    if (Object.keys(e).length > 0) return;
+    setSubmitting(true);
+    setTimeout(() => {
+      onSuccess({ ...form, companies: selected, id: Date.now(), date: new Date().toLocaleDateString("de-DE"), status: "neu" });
+      setSubmitting(false);
+    }, 900);
+  };
+
+  const F = ({ name, label, type = "text", placeholder }) => (
+    <div className="field">
+      <label>{label}</label>
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={form[name]}
+        onChange={e => { setForm({ ...form, [name]: e.target.value }); setErrors({ ...errors, [name]: null }); }}
+        style={errors[name] ? { borderColor: "#c0392b" } : {}}
+      />
+      {errors[name] && <div style={{ fontSize: ".75rem", color: "#c0392b", marginTop: ".25rem" }}>{errors[name]}</div>}
+    </div>
+  );
+
+  return (
+    <div className="page" style={{ background: CREAM }}>
+      <div className="form-page">
+        <div className="form-header">
+          <h1 className="form-h1">Workshop-<em>Anmeldung</em></h1>
+          <p className="form-lead">
+            Melde dich für Unternehmens-Workshops an und entdecke Ausbildungsberufe direkt vor Ort.
+            Du kannst bis zu <strong>5 Unternehmen</strong> wählen.
+          </p>
+        </div>
+
+        {/* Persönliche Daten */}
+        <div className="form-card">
+          <div className="form-section-title">
+            <span className="num">1</span> Persönliche Angaben
+          </div>
+          <div className="field-row">
+            <F name="vorname" label="Vorname" placeholder="Max" />
+            <F name="nachname" label="Nachname" placeholder="Mustermann" />
+          </div>
+          <div className="field-row">
+            <div className="field">
+              <label>Schulart</label>
+              <select value={form.schulart} onChange={e => { setForm({ ...form, schulart: e.target.value }); setErrors({ ...errors, schulart: null }); }} style={errors.schulart ? { borderColor: "#c0392b" } : {}}>
+                <option value="">Bitte wählen…</option>
+                {SCHULARTEN.map(s => <option key={s}>{s}</option>)}
+              </select>
+              {errors.schulart && <div style={{ fontSize: ".75rem", color: "#c0392b", marginTop: ".25rem" }}>{errors.schulart}</div>}
+            </div>
+            <div className="field">
+              <label>Klasse</label>
+              <select value={form.klasse} onChange={e => { setForm({ ...form, klasse: e.target.value }); setErrors({ ...errors, klasse: null }); }} style={errors.klasse ? { borderColor: "#c0392b" } : {}}>
+                <option value="">Bitte wählen…</option>
+                {KLASSEN.map(k => <option key={k}>{k}</option>)}
+              </select>
+              {errors.klasse && <div style={{ fontSize: ".75rem", color: "#c0392b", marginTop: ".25rem" }}>{errors.klasse}</div>}
+            </div>
+          </div>
+          <div className="field-row">
+            <F name="email" label="E-Mail" type="email" placeholder="max@schule.de" />
+            <F name="telefon" label="Telefon (optional)" placeholder="+49 176 …" />
+          </div>
+        </div>
+
+        {/* Unternehmen */}
+        <div className="form-card">
+          <div className="form-section-title">
+            <span className="num">2</span> Wunsch-Unternehmen wählen
+          </div>
+          <p className="company-count">
+            Ausgewählt: <span>{selected.length}</span> / 5
+            {errors.companies && <span style={{ color: "#c0392b", marginLeft: "1rem" }}>{errors.companies}</span>}
+          </p>
+          {selected.length === 5 && (
+            <div className="max-warn">
+              ✓ Du hast 5 Unternehmen gewählt – das ist das Maximum.
+            </div>
+          )}
+          <div className="company-grid">
+            {COMPANIES.map(c => (
+              <button
+                key={c}
+                className={`company-btn${selected.includes(c) ? " selected" : ""}${selected.length === 5 && !selected.includes(c) ? " disabled" : ""}`}
+                onClick={() => toggleCompany(c)}
+                style={selected.length === 5 && !selected.includes(c) ? { opacity: .4, cursor: "not-allowed" } : {}}
+              >
+                <span className="check">{selected.includes(c) ? "✓" : ""}</span>
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Submit */}
+        <button
+          className="submit-btn"
+          onClick={submit}
+          disabled={submitting}
+        >
+          {submitting ? "Wird gesendet…" : "Anmeldung absenden →"}
+        </button>
+        <p style={{ fontSize: ".75rem", color: MUTED, textAlign: "center", marginTop: ".8rem" }}>
+          Deine Daten werden nur für die Workshop-Koordination verwendet und nicht weitergegeben.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function SuccessScreen({ data, onBack }) {
+  return (
+    <div className="page">
+      <div className="success-screen">
+        <div className="success-icon">🎉</div>
+        <h2 className="success-h2">Anmeldung eingegangen!</h2>
+        <p className="success-p">
+          Hey {data.vorname}, deine Anmeldung für die FitForFuture-Workshops ist bei uns eingegangen.
+          Wir melden uns in den nächsten Tagen mit allen Details.
+        </p>
+        <div className="success-tags">
+          {data.companies.map(c => (
+            <span className="success-tag" key={c}>{c}</span>
+          ))}
+        </div>
+        <p style={{ fontSize: ".82rem", color: MUTED, marginBottom: "1.5rem" }}>
+          Klasse {data.klasse} · {data.schulart} · {data.email}
+        </p>
+        <button className="btn-primary" onClick={onBack}>← Zurück zur Startseite</button>
+      </div>
+    </div>
+  );
+}
+
+// ─── ADMIN PAGE ───────────────────────────────────────────────────────────────
+const ADMIN_PW = "fff2025";
+
+function AdminPage({ registrations }) {
+  const [authed, setAuthed] = useState(false);
+  const [pw, setPw] = useState("");
+  const [pwErr, setPwErr] = useState(false);
+  const [search, setSearch] = useState("");
+  const [filterKlasse, setFilterKlasse] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
+  const [statuses, setStatuses] = useState({});
+
+  const login = () => {
+    if (pw === ADMIN_PW) { setAuthed(true); setPwErr(false); }
+    else { setPwErr(true); }
+  };
+
+  if (!authed) return (
+    <div className="page">
+      <div className="admin-lock">
+        <div className="admin-lock-icon">🔒</div>
+        <h2>Admin-Bereich</h2>
+        <p>Nur für FitForFuture-Teammitglieder.</p>
+        <input
+          className="lock-input"
+          type="password"
+          placeholder="Passwort"
+          value={pw}
+          onChange={e => { setPw(e.target.value); setPwErr(false); }}
+          onKeyDown={e => e.key === "Enter" && login()}
+        />
+        {pwErr && <div className="lock-error">Falsches Passwort. Versuch es nochmal.</div>}
+        <button className="lock-btn" onClick={login}>Einloggen</button>
+        <p style={{ fontSize: ".72rem", color: MUTED, marginTop: "1rem" }}>Demo-Passwort: fff2025</p>
+      </div>
+    </div>
+  );
+
+  const allRegs = registrations;
+  const filtered = allRegs.filter(r => {
+    const q = search.toLowerCase();
+    const matchSearch = !q || `${r.vorname} ${r.nachname} ${r.email}`.toLowerCase().includes(q) || r.companies.some(c => c.toLowerCase().includes(q));
+    const matchKlasse = !filterKlasse || r.klasse === filterKlasse;
+    const matchStatus = !filterStatus || (statuses[r.id] || r.status) === filterStatus;
+    return matchSearch && matchKlasse && matchStatus;
+  });
+
+  const companyCount = {};
+  allRegs.forEach(r => r.companies.forEach(c => { companyCount[c] = (companyCount[c] || 0) + 1; }));
+  const topCompany = Object.entries(companyCount).sort((a, b) => b[1] - a[1])[0];
+
+  return (
+    <div className="page admin-page">
+      <div className="admin-topbar">
+        <div>
+          <div className="admin-title">Dashboard</div>
+          <div style={{ fontSize: ".82rem", color: MUTED, marginTop: ".15rem" }}>FitForFuture Anmeldungen</div>
+        </div>
+        <button className="admin-logout" onClick={() => setAuthed(false)}>Ausloggen</button>
+      </div>
+
+      <div className="demo-notice">
+        💡 <span>Demo-Modus: Anmeldungen werden nur für diese Sitzung gespeichert. In der Live-Version werden die Daten in einer Datenbank (z. B. Supabase) gespeichert.</span>
+      </div>
+
+      <div className="admin-stats">
+        <div className="admin-stat accent">
+          <div className="as-n">{allRegs.length}</div>
+          <div className="as-l">Anmeldungen gesamt</div>
+        </div>
+        <div className="admin-stat">
+          <div className="as-n">{[...new Set(allRegs.map(r => r.klasse))].length}</div>
+          <div className="as-l">Verschiedene Klassen</div>
+        </div>
+        <div className="admin-stat">
+          <div className="as-n">{allRegs.reduce((s, r) => s + r.companies.length, 0)}</div>
+          <div className="as-l">Workshop-Wünsche total</div>
+        </div>
+        <div className="admin-stat">
+          <div className="as-n" style={{ fontSize: "1.2rem", paddingTop: ".6rem" }}>{topCompany ? topCompany[0].split(" ")[0] + "…" : "–"}</div>
+          <div className="as-l">Beliebtestes Unternehmen {topCompany ? `(${topCompany[1]}x)` : ""}</div>
+        </div>
+      </div>
+
+      <div className="admin-filters">
+        <input className="filter-input" placeholder="🔍 Suchen…" value={search} onChange={e => setSearch(e.target.value)} style={{ minWidth: "200px" }} />
+        <select className="filter-select" value={filterKlasse} onChange={e => setFilterKlasse(e.target.value)}>
+          <option value="">Alle Klassen</option>
+          {KLASSEN.map(k => <option key={k}>{k}</option>)}
+        </select>
+        <select className="filter-select" value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
+          <option value="">Alle Status</option>
+          <option value="neu">Neu</option>
+          <option value="erledigt">Erledigt</option>
+        </select>
+        <span style={{ fontSize: ".8rem", color: MUTED, marginLeft: "auto" }}>{filtered.length} Ergebnis{filtered.length !== 1 ? "se" : ""}</span>
+      </div>
+
+      <div className="table-wrap">
+        {filtered.length === 0 ? (
+          <div className="empty-state">
+            <div className="empty-icon">📋</div>
+            {allRegs.length === 0
+              ? "Noch keine Anmeldungen. Schülerinnen und Schüler können sich über das Formular anmelden."
+              : "Keine Ergebnisse für diese Filterung."}
+          </div>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Klasse</th>
+                <th>Kontakt</th>
+                <th>Wunschunternehmen</th>
+                <th>Datum</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(r => {
+                const status = statuses[r.id] || r.status || "neu";
+                return (
+                  <tr key={r.id}>
+                    <td><strong>{r.vorname} {r.nachname}</strong><div className="td-muted">{r.schulart}</div></td>
+                    <td>{r.klasse}</td>
+                    <td><div>{r.email}</div>{r.telefon && <div className="td-muted">{r.telefon}</div>}</td>
+                    <td>
+                      <div className="td-companies">
+                        {r.companies.map(c => <span className="td-tag" key={c}>{c.split(" ")[0]}</span>)}
+                      </div>
+                    </td>
+                    <td className="td-muted">{r.date}</td>
+                    <td>
+                      <select
+                        style={{ border: "none", background: "transparent", fontSize: ".78rem", cursor: "pointer", fontFamily: "'DM Sans',sans-serif" }}
+                        value={status}
+                        onChange={e => setStatuses({ ...statuses, [r.id]: e.target.value })}
+                      >
+                        <option value="neu">🟢 Neu</option>
+                        <option value="erledigt">✅ Erledigt</option>
+                      </select>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── APP ROOT ─────────────────────────────────────────────────────────────────
+export default function App() {
+  const [page, setPage] = useState("home");
+  const [successData, setSuccessData] = useState(null);
+  const [registrations, setRegistrations] = useState([]);
+
+  const handleSuccess = (data) => {
+    setRegistrations(prev => [data, ...prev]);
+    setSuccessData(data);
+    setPage("success");
+  };
+
+  useEffect(() => { window.scrollTo(0, 0); }, [page]);
+
+  return (
+    <>
+      <style>{css}</style>
+      <nav className="nav">
+        <div className="nav-logo" onClick={() => setPage("home")}>Fit<span>For</span>Future</div>
+        <div className="nav-links">
+          <button className="nav-link" onClick={() => setPage("home")}>Start</button>
+          <button className="nav-link" onClick={() => { setPage("home"); setTimeout(() => document.getElementById("sec-how")?.scrollIntoView({ behavior: "smooth" }), 100); }}>Programm</button>
+          <button className="nav-link" onClick={() => setPage("anmeldung")}>Anmeldung</button>
+        </div>
+        <div style={{ display: "flex", gap: ".5rem" }}>
+          <button className="nav-cta" onClick={() => setPage("anmeldung")}>Jetzt anmelden</button>
+          <button className="nav-admin" onClick={() => setPage("admin")}>Admin</button>
+        </div>
+      </nav>
+
+      <div className="page">
+        {page === "home" && <HomePage onAnmeldung={() => setPage("anmeldung")} />}
+        {page === "anmeldung" && <AnmeldungPage onSuccess={handleSuccess} />}
+        {page === "success" && successData && <SuccessScreen data={successData} onBack={() => setPage("home")} />}
+        {page === "admin" && <AdminPage registrations={registrations} />}
+      </div>
+    </>
+  );
+}
