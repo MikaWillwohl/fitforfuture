@@ -77,10 +77,7 @@ export function WorkshopPage({ onBack, onAnmeldung }) {
           <p className="ip-text">FitForFuture macht das anders. Kleine Gruppen von 5–8 Schülern gehen direkt in die Betriebe – nicht als Zuschauer, sondern als Teilnehmer. Sie packen mit an, reden mit Azubis auf Augenhöhe und erleben, wie ein Arbeitstag wirklich aussieht.</p>
         </div>
 
-        <div className="ip-photo-row">
-          <img src="/foto4.jpg" alt="Schüler bei der Arbeit" />
-          <img src="/foto2.jpg" alt="Workshop Einblick" />
-        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:"1rem",margin:"2rem 0"}}><img src="/STEFF.png" alt="Workshop" style={{width:"100%",height:"200px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/SPA.png" alt="Workshop" style={{width:"100%",height:"200px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/VR.png" alt="VR" style={{width:"100%",height:"200px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"200px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
         <div className="ip-section">
           <h2 className="ip-section-title">So läuft ein <em>Workshoptag</em> ab</h2>
