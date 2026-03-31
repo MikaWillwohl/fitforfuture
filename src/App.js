@@ -182,11 +182,11 @@ function AccordionItem({ icon, title, children, id }) {
   return (
     <div id={id} className={`acc-item${open?" open":""}`}>
       <div className="acc-header" onClick={() => setOpen(!open)}>
-        <div className="acc-title"><span className="acc-icon">{icon}</span>{title}</div>
+        <div className="acc-title"><span className="acc-icon">{icon}</span>{title}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <span className="acc-arrow">▾</span>
-      </div>
-      <div className="acc-body">{children}</div>
-    </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <div className="acc-body">{children}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+    <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
   );
 }
 
@@ -215,7 +215,7 @@ function CompanyGrid() {
         {KATEGORIEN.map(k=>(
           <button key={k} onClick={()=>setAktiv(k)} style={{padding:".35rem .9rem",borderRadius:"2rem",fontSize:".78rem",fontWeight:600,border:"1.5px solid",borderColor:aktiv===k?"#1a3a2a":"rgba(26,58,42,.15)",background:aktiv===k?"#1a3a2a":"#fff",color:aktiv===k?"#c8f060":"#6b6b5a",cursor:"pointer",transition:"all .18s"}}>{k}</button>
         ))}
-      </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1rem"}}>
         {filtered.map(co=>{
           const [bg,text] = KAT_COLORS[co.kategorie]||["#f3f4f6","#374151"];
@@ -224,18 +224,18 @@ function CompanyGrid() {
               onMouseEnter={e=>e.currentTarget.style.transform="translateY(-3px)"}
               onMouseLeave={e=>e.currentTarget.style.transform="translateY(0)"}>
               <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:".5rem"}}>
-                <div style={{fontWeight:700,fontSize:".9rem",color:G,lineHeight:1.3}}>{co.name}</div>
+                <div style={{fontWeight:700,fontSize:".9rem",color:G,lineHeight:1.3}}>{co.name}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
                 <span style={{background:bg,color:text,padding:".2rem .6rem",borderRadius:"2rem",fontSize:".68rem",fontWeight:700,flexShrink:0,whiteSpace:"nowrap"}}>{co.kategorie}</span>
-              </div>
-              <div style={{fontSize:".8rem",color:MUTED}}>{co.branche}</div>
+              <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div style={{fontSize:".8rem",color:MUTED}}>{co.branche}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
               {co.web
                 ? <a href={co.web} target="_blank" rel="noopener noreferrer" style={{fontSize:".76rem",fontWeight:600,color:"#7ab828",textDecoration:"none",marginTop:"auto"}}>Website besuchen →</a>
                 : <span style={{fontSize:".76rem",color:"rgba(26,58,42,.25)",marginTop:"auto"}}>–</span>}
-            </div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           );
         })}
-      </div>
-    </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+    <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
   );
 }
 
@@ -245,63 +245,63 @@ function HomePage({ onAnmeldung, onPage }) {
       {/* HERO */}
       <div className="hero">
         <div className="hero-l">
-          <div style={{display:"flex",alignItems:"center",gap:".6rem",marginBottom:"1.5rem"}}><div style={{width:"2px",height:"2rem",background:"#7ab828"}}></div><span style={{fontSize:".78rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"#7ab828"}}>Bürstadt · Kreis Bergstraße</span></div>
-          <div style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(3rem,6vw,6rem)",color:"#7ab828",fontWeight:400,lineHeight:1,marginBottom:".3rem",letterSpacing:"-.03em"}}>FitForFuture</div><h1 className="hero-h1" style={{fontSize:"clamp(1.4rem,2.5vw,2.5rem)"}}>Mehr als nur <em>Berufsorientierung.</em></h1>
+          <div style={{display:"flex",alignItems:"center",gap:".6rem",marginBottom:"1.5rem"}}><div style={{width:"2px",height:"2rem",background:"#7ab828"}}><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><span style={{fontSize:".78rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"#7ab828"}}>Bürstadt · Kreis Bergstraße</span><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <div style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(3rem,6vw,6rem)",color:"#7ab828",fontWeight:400,lineHeight:1,marginBottom:".3rem",letterSpacing:"-.03em"}}>FitForFuture<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><h1 className="hero-h1" style={{fontSize:"clamp(1.4rem,2.5vw,2.5rem)"}}>Mehr als nur <em>Berufsorientierung.</em></h1>
           <p className="hero-sub">Wir verbinden Schülerinnen und Schüler mit lokalen Unternehmen – praxisnah, auf Augenhöhe und mit echtem Mehrwert.</p>
           <div className="hero-btns">
             <button className="btn-primary" onClick={onAnmeldung}>Jetzt anmelden →</button>
             <button className="btn-secondary" onClick={() => document.getElementById("sec-programm")?.scrollIntoView({behavior:"smooth"})}>Unser Programm</button>
-          </div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           <div className="hero-stats">
-            <div><div className="stat-n">30<span>+</span></div><div className="stat-l">Partnerunternehmen</div></div>
-            <div><div className="stat-n">280<span>+</span></div><div className="stat-l">Schüler erreicht</div></div>
-            <div><div className="stat-n">15</div><div className="stat-l">Teammitglieder</div></div>
-          </div>
-        </div>
+            <div><div className="stat-n">30<span>+</span><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="stat-l">Partnerunternehmen<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <div><div className="stat-n">280<span>+</span><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="stat-l">Schüler erreicht<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <div><div className="stat-n">15<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="stat-l">Teammitglieder<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div className="hero-r">
           <img className="hero-img" src="/foto3.jpg" alt="FitForFuture Workshop" />
           <div className="hero-r-inner">
             <p className="hero-quote">„Oft muss man nicht wegziehen – der richtige Beruf ist direkt vor der Haustür."</p>
             <p className="hero-quote-attr">— FitForFuture Gründer</p>
 
-          </div>
-        </div>
-      </div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* PROGRAMM ACCORDION */}
       <div className="section" id="sec-programm">
-        <div className="section-label">Unser Programm</div>
+        <div className="section-label">Unser Programm<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 className="section-h2">Alles was du <em style={{fontStyle:"italic"}}>wissen musst</em></h2>
         <p className="section-lead">FitForFuture besteht aus drei Säulen – klappe auf um mehr zu erfahren.</p>
         <div className="accordion">
           <AccordionItem icon="🏭" title="Unternehmens-Workshops" id="acc-workshop">
             <p className="acc-text">Zu Beginn des Schuljahres stellen wir uns in jeder Klasse vor und erklären das Projekt. Danach können sich Schülerinnen und Schüler für bis zu 5 Unternehmen anmelden. Wir holen sie von der Schule ab, begleiten sie den ganzen Tag und bringen sie wieder zurück.</p>
             <p className="acc-text">Keine Firmenbesichtigung – sondern echte Praxis: Werkzeuge anfassen, mit Azubis reden, selbst ausprobieren. Weil man nur so herausfindet, ob ein Beruf wirklich passt.</p>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1rem",marginTop:"1rem"}}><img src="/STEFF.png" alt="Workshop" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/SPA.png" alt="Workshop" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:"1rem",marginTop:"1rem"}}><img src="/STEFF.png" alt="Workshop" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/SPA.png" alt="Workshop" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
             <div className="acc-steps">
               <span className="acc-step">Klassenvorstellung</span>
               <span className="acc-step">Anmeldung (max. 5)</span>
               <span className="acc-step">Abholung an der Schule</span>
               <span className="acc-step">Praxis im Unternehmen</span>
               <span className="acc-step">Rückkehr & Feedback</span>
-            </div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
             <div className="acc-highlights" style={{marginTop:"1.2rem"}}>
-              <div className="acc-hl"><div className="acc-hl-num">18</div><div className="acc-hl-l">Workshops 2025</div></div>
-              <div className="acc-hl"><div className="acc-hl-num">5–8</div><div className="acc-hl-l">SuS pro Gruppe</div></div>
-              <div className="acc-hl"><div className="acc-hl-num">30+</div><div className="acc-hl-l">Partnerunternehmen</div></div>
-            </div>
+              <div className="acc-hl"><div className="acc-hl-num">18<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="acc-hl-l">Workshops 2025<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div className="acc-hl"><div className="acc-hl-num">5–8<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="acc-hl-l">SuS pro Gruppe<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div className="acc-hl"><div className="acc-hl-num">30+<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="acc-hl-l">Partnerunternehmen<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           </AccordionItem>
 
           <AccordionItem icon="✨" title="Beyond-School-Workshops" id="acc-beyond">
             <p className="acc-text">Das Schulsystem deckt nicht alles ab. Deshalb bieten wir ergänzende Workshops zu Themen an, die fürs Leben wirklich wichtig sind – aber im Unterricht oft fehlen.</p>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".7rem",marginTop:"1rem"}}>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:".7rem",marginTop:"1rem"}}>
               {[["💰","Finanzworkshop","Konten, Steuern, Altersvorsorge"],["🧠","Persönlichkeitsworkshop","Stärken erkennen & nutzen"],["🏛️","Demokratieworkshop","Im Landtag vor Ort"],["📝","Bewerbungsworkshop","Anschreiben, Lebenslauf, Interview"],["👔","Style-Workshop","Auftreten & erste Wirkung"]].map(([ic,t,d])=>(
                 <div key={t} style={{background:"rgba(26,58,42,.04)",borderRadius:".8rem",padding:"1rem",display:"flex",gap:".7rem",alignItems:"flex-start"}}>
                   <span style={{fontSize:"1.4rem"}}>{ic}</span>
-                  <div><div style={{fontWeight:700,fontSize:".88rem",color:G,marginBottom:".2rem"}}>{t}</div><div style={{fontSize:".78rem",color:MUTED}}>{d}</div></div>
-                </div>
+                  <div><div style={{fontWeight:700,fontSize:".88rem",color:G,marginBottom:".2rem"}}>{t}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div style={{fontSize:".78rem",color:MUTED}}>{d}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+                <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
               ))}
-            </div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           </AccordionItem>
 
           <AccordionItem icon="💬" title="Mentoring-Programm" id="acc-mentoring">
@@ -310,7 +310,7 @@ function HomePage({ onAnmeldung, onPage }) {
             <div style={{background:G,borderRadius:"1rem",padding:"1.5rem",marginTop:"1.2rem"}}>
               <p style={{fontFamily:"'Inter',sans-serif",fontSize:"1.3rem",color:CREAM,fontStyle:"italic",lineHeight:1.5}}>"Du wirst gesehen. Du wirst begleitet. Du bist wichtig."</p>
               <p style={{fontSize:".78rem",color:"rgba(245,240,232,.45)",marginTop:".5rem",letterSpacing:".06em",textTransform:"uppercase"}}>— FitForFuture Mentoring</p>
-            </div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           </AccordionItem>
 
           <AccordionItem icon="📊" title="Über das Projekt">
@@ -318,40 +318,40 @@ function HomePage({ onAnmeldung, onPage }) {
             <p className="acc-text">Im ersten Zyklus 2025 haben wir 18 Workshops mit über 400 Anmeldungen bei rund 280 Schülerinnen und Schülern durchgeführt. Ein zweiter Zyklus folgt direkt nach den Osterferien.</p>
             <img className="acc-photo" src="/foto1.jpg" alt="Präsentation" style={{marginTop:"1rem"}} />
           </AccordionItem>
-        </div>
-      </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* TEAM */}
       <div className="section warm">
-        <div className="section-label">Wer wir sind</div>
+        <div className="section-label">Wer wir sind<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 className="section-h2">Das <em style={{fontStyle:"italic"}}>Team</em></h2>
         <p className="section-lead">Drei Freunde aus Lampertheim, die etwas verändern wollen – und 15 Teammitglieder, die das möglich machen.</p>
         <div className="team-grid">
           {[["M","Mika Willwohl","https://www.linkedin.com/in/mika-willwohl-7b0b98193"],["B","Mika Back","https://www.linkedin.com/in/mika-back-057b47286"],["L","Luigi Imperato","https://www.linkedin.com/in/luigi-flavio-imperato-2462292a9"]].map(([a,n,r])=>(
             <div className="team-card" key={n}>
-              <div className="team-avatar">{a}</div>
-              <div className="team-name">{n}</div>
-              <div className="team-role">Gründer</div>
+              <div className="team-avatar">{a}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div className="team-name">{n}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div className="team-role">Gründer<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
               {r && <a href={r} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:".6rem",background:"#0077b5",color:"#fff",padding:".3rem .8rem",borderRadius:"2rem",fontSize:".75rem",fontWeight:600,textDecoration:"none"}}>LinkedIn →</a>}
-            </div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           ))}
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div style={{marginTop:"2rem",background:"#fff",borderRadius:"1.2rem",padding:"1.5rem 2rem",border:"1px solid rgba(26,58,42,.07)"}}>
           <p style={{fontSize:".9rem",color:MUTED,lineHeight:1.75}}>Neben den drei Gründern besteht unser Team aus <strong style={{color:G}}>15 aktiven Mitgliedern</strong>, die Workshops koordinieren, Schülerinnen und Schüler begleiten und das Projekt jeden Tag ein Stück weiterbringen. Jeder bringt eigene Stärken ein – gemeinsam machen wir FitForFuture möglich.</p>
-        </div>
-      </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* PARTNER */}
       <div className="section warm">
-        <div className="section-label">Unsere Partner</div>
+        <div className="section-label">Unsere Partner<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 className="section-h2">30+ Unternehmen <em style={{fontStyle:"italic"}}>aus Bürstadt</em></h2>
         <p className="section-lead">Lokale Betriebe die ausbilden, duale Studiengänge anbieten und echte Chancen eröffnen – direkt vor der Haustür.</p>
         <CompanyGrid />
-      </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* FOTOS */}
       <div className="section">
-        <div className="section-label">Einblicke</div>
+        <div className="section-label">Einblicke<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 className="section-h2">FitForFuture <em style={{fontStyle:"italic"}}>in Aktion</em></h2>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gridTemplateRows:"260px 260px",gap:"1rem",marginTop:"2rem"}}>
           <img src="/F.jpg" alt="FitForFuture Workshop" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"1.2rem",gridRow:"1 / 3"}} />
@@ -359,73 +359,73 @@ function HomePage({ onAnmeldung, onPage }) {
           <img src="/Lui.jpg" alt="Team" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"1.2rem"}} />
           <img src="/ger.jpg" alt="Workshop Praxis" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"1.2rem"}} />
           <img src="/foto4.jpg" alt="Praxis" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"1.2rem"}} />
-        </div>
-      </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* ERFOLGE */}
       <div className="section">
-        <div className="section-label">Zahlen & Erfolge</div>
+        <div className="section-label">Zahlen & Erfolge<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 className="section-h2">Was wir bisher <em style={{fontStyle:"italic"}}>erreicht haben</em></h2>
         <div className="stats-row">
-          <div className="stat-card accent"><div className="ec-n">18</div><div className="ec-l">Workshops Zyklus 1 / 2025</div></div>
-          <div className="stat-card"><div className="ec-n">400+</div><div className="ec-l">Anmeldungen von SuS</div></div>
-          <div className="stat-card"><div className="ec-n">280</div><div className="ec-l">Teilnehmende Schüler</div></div>
-          <div className="stat-card"><div className="ec-n">30+</div><div className="ec-l">Partnerunternehmen</div></div>
-        </div>
+          <div className="stat-card accent"><div className="ec-n">18<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="ec-l">Workshops Zyklus 1 / 2025<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <div className="stat-card"><div className="ec-n">400+<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="ec-l">Anmeldungen von SuS<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <div className="stat-card"><div className="ec-n">280<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="ec-l">Teilnehmende Schüler<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <div className="stat-card"><div className="ec-n">30+<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="ec-l">Partnerunternehmen<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div className="winwin">
           <div className="winwin-text" style={{flex:1}}>
             <h3>Eine echte Win-Win-Situation</h3>
             <p>Durch die Workshops wurden bereits längere Praktika vereinbart. Die Hemmschwelle sinkt – erste Kontakte entstehen, Bewerbungen folgen. Unternehmen die Azubis suchen profitieren genauso wie die Schüler selbst.</p>
-          </div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           <div className="winwin-badges">
-            <div className="wbadge">✓ Schüler profitieren</div>
-            <div className="wbadge">✓ Unternehmen profitieren</div>
-            <div className="wbadge">✓ Region profitiert</div>
-          </div>
-        </div>
-      </div>
+            <div className="wbadge">✓ Schüler profitieren<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <div className="wbadge">✓ Unternehmen profitieren<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <div className="wbadge">✓ Region profitiert<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* KONTAKT */}
       <div className="section dark" id="sec-kontakt">
-        <div className="section-label">Kontakt</div>
+        <div className="section-label">Kontakt<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 className="section-h2">Schreib uns <em style={{fontStyle:"italic"}}>einfach</em></h2>
         <div className="kontakt-grid">
           <div>
             <p className="section-lead">Ob Schüler, Elternteil, Lehrer oder Unternehmen – schreib uns einfach. Wir freuen uns!</p>
             <div className="kontakt-item">
-              <div className="kontakt-icon">📧</div>
-              <div><div className="kontakt-label">E-Mail</div><div className="kontakt-val">fit4future2024@outlook.de</div></div>
-            </div>
+              <div className="kontakt-icon">📧<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div><div className="kontakt-label">E-Mail<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="kontakt-val">fit4future2024@outlook.de<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
             <div className="kontakt-item">
-              <div className="kontakt-icon">📱</div>
-              <div><div className="kontakt-label">Telefon / WhatsApp</div><div className="kontakt-val">015224932896</div></div>
-            </div>
+              <div className="kontakt-icon">📱<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div><div className="kontakt-label">Telefon / WhatsApp<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="kontakt-val">015224932896<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
             <div className="kontakt-item">
-              <div className="kontakt-icon">📍</div>
-              <div><div className="kontakt-label">Standort</div><div className="kontakt-val">Bürstadt, Kreis Bergstraße</div></div>
-            </div>
+              <div className="kontakt-icon">📍<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div><div className="kontakt-label">Standort<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="kontakt-val">Bürstadt, Kreis Bergstraße<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
             <div className="kontakt-item">
-              <div className="kontakt-icon">🏫</div>
-              <div><div className="kontakt-label">Partnerschule</div><div className="kontakt-val">Erich-Kästner-Schule Bürstadt</div></div>
-            </div>
-          </div>
+              <div className="kontakt-icon">🏫<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+              <div><div className="kontakt-label">Partnerschule<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div className="kontakt-val">Erich-Kästner-Schule Bürstadt<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+            <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
           <div className="kontakt-right">
             <h3>Mach mit!</h3>
             <p>Sichere dir deinen Workshop-Platz oder werde Partner – wir melden uns schnell!</p>
             <button className="btn-primary" onClick={onAnmeldung} style={{fontSize:"1rem",padding:".9rem 2rem"}}>Jetzt anmelden →</button>
-          </div>
-        </div>
-      </div>
+          <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
 
       {/* FOOTER */}
       <div style={{background:"#111",padding:"2rem 8vw",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1rem"}}>
         <div style={{display:"flex",alignItems:"center",gap:".7rem"}}>
           <img src="/logo.png" alt="Logo" style={{height:"1.8rem"}} />
           <span style={{fontFamily:"'Inter',sans-serif",color:"#fff",fontSize:"1.1rem"}}>FitForFuture</span>
-        </div>
-        <div style={{fontSize:".78rem",color:"rgba(255,255,255,.35)"}}>© 2025 FitForFuture · Bürstadt · Unterstützt durch Bürgerstiftung Bürstadt</div>
-      </div>
-    </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <div style={{fontSize:".78rem",color:"rgba(255,255,255,.35)"}}>© 2025 FitForFuture · Bürstadt · Unterstützt durch Bürgerstiftung Bürstadt<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+    <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
   );
 }
 
@@ -433,16 +433,16 @@ function SuccessScreen({ data, onBack }) {
   return (
     <div className="page">
       <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"4rem 2rem",minHeight:"60vh"}}>
-        <div style={{fontSize:"4rem",marginBottom:"1.5rem"}}>🎉</div>
+        <div style={{fontSize:"4rem",marginBottom:"1.5rem"}}>🎉<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 style={{fontFamily:"'Inter',sans-serif",fontSize:"2.2rem",color:G,marginBottom:".8rem"}}>Anmeldung eingegangen!</h2>
         <p style={{color:MUTED,fontSize:".95rem",lineHeight:1.65,maxWidth:"44ch",marginBottom:"2rem"}}>Hey {data.vorname}, deine Anmeldung ist bei uns eingegangen. Wir melden uns bald!</p>
         <div style={{display:"flex",flexWrap:"wrap",gap:".5rem",justifyContent:"center",marginBottom:"2rem"}}>
           {data.companies.map(c=><span key={c} style={{background:G,color:LIME,padding:".3rem .8rem",borderRadius:"2rem",fontSize:".78rem",fontWeight:600}}>{c}</span>)}
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <p style={{fontSize:".82rem",color:MUTED,marginBottom:"1.5rem"}}>Klasse {data.klasse} · {data.schulart}</p>
         <button className="btn-primary" onClick={onBack}>← Zurück zur Startseite</button>
-      </div>
-    </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+    <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
   );
 }
 
@@ -468,16 +468,16 @@ function AdminPage({ registrations }) {
   if (!authed) return (
     <div className="page" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
       <div style={{maxWidth:380,width:"100%",padding:"2rem",textAlign:"center"}}>
-        <div style={{fontSize:"3rem",marginBottom:"1.2rem"}}>🔒</div>
+        <div style={{fontSize:"3rem",marginBottom:"1.2rem"}}>🔒<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <h2 style={{fontFamily:"'Inter',sans-serif",fontSize:"1.8rem",color:G,marginBottom:".5rem"}}>Admin-Bereich</h2>
         <p style={{fontSize:".88rem",color:MUTED,marginBottom:"1.5rem"}}>Nur für FitForFuture-Team.</p>
         <input type="password" placeholder="Passwort" value={pw}
           onChange={e=>{setPw(e.target.value);setPwErr(false);}} onKeyDown={e=>e.key==="Enter"&&login()}
           style={{width:"100%",padding:".7rem 1rem",border:`1.5px solid rgba(26,58,42,.2)`,borderRadius:".7rem",fontFamily:"'Inter',sans-serif",fontSize:"1rem",color:G,background:"#fff",outline:"none",textAlign:"center",letterSpacing:".1em",marginBottom:".8rem"}}/>
-        {pwErr && <div style={{fontSize:".8rem",color:"#c0392b",marginBottom:".8rem"}}>Falsches Passwort.</div>}
+        {pwErr && <div style={{fontSize:".8rem",color:"#c0392b",marginBottom:".8rem"}}>Falsches Passwort.<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>}
         <button onClick={login} style={{width:"100%",padding:".75rem",background:G,color:LIME,border:"none",borderRadius:".7rem",fontFamily:"'Inter',sans-serif",fontSize:".92rem",fontWeight:700,cursor:"pointer"}}>Einloggen</button>
-      </div>
-    </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+    <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
   );
 
   const allRegs = dbRegs.length > 0 ? dbRegs : registrations;
@@ -489,20 +489,20 @@ function AdminPage({ registrations }) {
   return (
     <div className="page" style={{padding:"1.5rem 5vw 4rem"}}>
       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"2rem",flexWrap:"wrap",gap:"1rem"}}>
-        <div style={{fontFamily:"'Inter',sans-serif",fontSize:"1.8rem",color:G}}>Dashboard</div>
+        <div style={{fontFamily:"'Inter',sans-serif",fontSize:"1.8rem",color:G}}>Dashboard<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <button onClick={()=>setAuthed(false)} style={{background:"transparent",border:"1px solid rgba(26,58,42,.2)",color:MUTED,padding:".4rem .9rem",borderRadius:".5rem",fontSize:".8rem",cursor:"pointer"}}>Ausloggen</button>
-      </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:"1rem",marginBottom:"2rem"}}>
 
-        <div style={{background:G,borderRadius:"1rem",padding:"1.4rem"}}><div style={{fontSize:"2.4rem",color:LIME}}>{allRegs.length}</div><div style={{fontSize:".75rem",color:"rgba(245,240,232,.55)"}}>Anmeldungen</div></div>
-        <div style={{background:"#fff",borderRadius:"1rem",padding:"1.4rem",border:"1px solid rgba(26,58,42,.07)"}}><div style={{fontSize:"2.4rem",color:G}}>{[...new Set(allRegs.map(r=>r.klasse))].length}</div><div style={{fontSize:".75rem",color:MUTED}}>Klassen</div></div>
-        <div style={{background:"#fff",borderRadius:"1rem",padding:"1.4rem",border:"1px solid rgba(26,58,42,.07)"}}><div style={{fontSize:"2.4rem",color:G}}>{allRegs.reduce((s,r)=>s+(r.companies||"").split(", ").filter(Boolean).length,0)}</div><div style={{fontSize:".75rem",color:MUTED}}>Workshop-Wuensche</div></div>
-      </div>
+        <div style={{background:G,borderRadius:"1rem",padding:"1.4rem"}}><div style={{fontSize:"2.4rem",color:LIME}}>{allRegs.length}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div style={{fontSize:".75rem",color:"rgba(245,240,232,.55)"}}>Anmeldungen<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <div style={{background:"#fff",borderRadius:"1rem",padding:"1.4rem",border:"1px solid rgba(26,58,42,.07)"}}><div style={{fontSize:"2.4rem",color:G}}>{[...new Set(allRegs.map(r=>r.klasse))].length}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div style={{fontSize:".75rem",color:MUTED}}>Klassen<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+        <div style={{background:"#fff",borderRadius:"1rem",padding:"1.4rem",border:"1px solid rgba(26,58,42,.07)"}}><div style={{fontSize:"2.4rem",color:G}}>{allRegs.reduce((s,r)=>s+(r.companies||"").split(", ").filter(Boolean).length,0)}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><div style={{fontSize:".75rem",color:MUTED}}>Workshop-Wuensche<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div><img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
       <input placeholder="🔍 Suchen…" value={search} onChange={e=>setSearch(e.target.value)}
         style={{padding:".5rem .9rem",border:"1.5px solid rgba(26,58,42,.15)",borderRadius:".6rem",fontFamily:"'Inter',sans-serif",fontSize:".85rem",color:G,background:"#fff",outline:"none",marginBottom:"1.2rem",minWidth:"200px"}}/>
       <div style={{background:"#fff",borderRadius:"1.2rem",border:"1px solid rgba(26,58,42,.07)",overflow:"hidden"}}>
         {filtered.length===0?(
-          <div style={{padding:"4rem",textAlign:"center",color:MUTED}}>Noch keine Anmeldungen.</div>
+          <div style={{padding:"4rem",textAlign:"center",color:MUTED}}>Noch keine Anmeldungen.<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         ):(
           <table style={{width:"100%",borderCollapse:"collapse"}}>
             <thead><tr style={{background:G}}>
@@ -511,10 +511,10 @@ function AdminPage({ registrations }) {
             <tbody>
               {filtered.map((r,i)=>(
                 <tr key={r.id||i} style={{borderBottom:"1px solid rgba(26,58,42,.06)"}}>
-                  <td style={{padding:".75rem 1rem",fontSize:".85rem",color:G}}><strong>{r.vorname} {r.nachname}</strong><div style={{fontSize:".78rem",color:MUTED}}>{r.schulart}</div></td>
-                  <td style={{padding:".75rem 1rem",fontSize:".85rem",color:G}}>{r.klasse}{r.lehrer&&<div style={{fontSize:".78rem",color:MUTED}}>Lk: {r.lehrer}</div>}</td>
+                  <td style={{padding:".75rem 1rem",fontSize:".85rem",color:G}}><strong>{r.vorname} {r.nachname}</strong><div style={{fontSize:".78rem",color:MUTED}}>{r.schulart}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div></td>
+                  <td style={{padding:".75rem 1rem",fontSize:".85rem",color:G}}>{r.klasse}{r.lehrer&&<div style={{fontSize:".78rem",color:MUTED}}>Lk: {r.lehrer}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>}</td>
                   <td style={{padding:".75rem 1rem",fontSize:".85rem",color:G}}>{r.handy||"–"}</td>
-                  <td style={{padding:".75rem 1rem"}}><div style={{display:"flex",flexWrap:"wrap",gap:".3rem"}}>{(r.companies||"").split(", ").filter(Boolean).map(c=><span key={c} style={{background:"rgba(26,58,42,.08)",borderRadius:".4rem",padding:".15rem .5rem",fontSize:".72rem",fontWeight:600,color:G}}>{c}</span>)}</div></td>
+                  <td style={{padding:".75rem 1rem"}}><div style={{display:"flex",flexWrap:"wrap",gap:".3rem"}}>{(r.companies||"").split(", ").filter(Boolean).map(c=><span key={c} style={{background:"rgba(26,58,42,.08)",borderRadius:".4rem",padding:".15rem .5rem",fontSize:".72rem",fontWeight:600,color:G}}>{c}</span>)}<img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div></td>
                   <td style={{padding:".75rem 1rem"}}>
                     <select style={{border:"none",background:"transparent",fontSize:".78rem",cursor:"pointer",fontFamily:"'Inter',sans-serif"}}
                       value={statuses[r.id||i]||r.status||"neu"} onChange={e=>setStatuses({...statuses,[r.id||i]:e.target.value})}>
@@ -527,8 +527,8 @@ function AdminPage({ registrations }) {
             </tbody>
           </table>
         )}
-      </div>
-    </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
+    <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
   );
 }
 
@@ -547,10 +547,10 @@ function Nav({ setPage }) {
         <div className="nav-logo" onClick={()=>{setPage("home");setMenuOpen(false);}}>
           <img src="/logo.png" alt="Logo" />
           <span className="nav-logo-text">Fit<span>For</span>Future</span>
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div className="nav-links">
           {links.map(([l,p])=><button key={p} className="nav-link" onClick={()=>go(p)}>{l}</button>)}
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div style={{display:"flex",gap:".5rem",alignItems:"center"}}>
           <button className="nav-cta" onClick={()=>{setPage("anmeldung");setMenuOpen(false);}}>Jetzt anmelden</button>
           <button onClick={()=>setMenuOpen(!menuOpen)} style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:"5px",cursor:"pointer",border:"1.5px solid #1a3a2a",background:"#fff",padding:".5rem .6rem",borderRadius:".5rem",zIndex:200,position:"relative"}}>
@@ -558,7 +558,7 @@ function Nav({ setPage }) {
             <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
             <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
           </button>
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
       </nav>
       {menuOpen && (
         <div style={{position:"fixed",top:"4.5rem",left:0,right:0,background:"rgba(245,240,232,.98)",backdropFilter:"blur(12px)",padding:"1rem 5vw 1.5rem",borderBottom:"1px solid rgba(26,58,42,.1)",zIndex:99,display:"flex",flexDirection:"column",gap:".3rem"}}>
@@ -567,7 +567,7 @@ function Nav({ setPage }) {
           ))}
           <button onClick={()=>{setPage("anmeldung");setMenuOpen(false);}} style={{fontSize:".95rem",fontWeight:700,color:"#7ab828",padding:".8rem 0",background:"none",border:"none",textAlign:"left",cursor:"pointer"}}>→ Jetzt anmelden</button>
           <button onClick={()=>{setPage("admin");setMenuOpen(false);}} style={{fontSize:".82rem",color:"#6b6b5a",padding:".5rem 0",background:"none",border:"none",textAlign:"left",cursor:"pointer"}}>Admin</button>
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
       )}
     </>
   );
@@ -586,7 +586,7 @@ export default function App() {
         <div className="nav-logo" onClick={()=>setPage("home")}>
           <img src="/logo.png" alt="FitForFuture Logo" />
           <span className="nav-logo-text">Fit<span>For</span>Future</span>
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div className="nav-links">
           <button className="nav-link" onClick={()=>setPage("home")}>Start</button>
           <button className="nav-link" onClick={()=>setPage("workshops")}>Workshops</button>
@@ -594,11 +594,11 @@ export default function App() {
           <button className="nav-link" onClick={()=>setPage("mentoring")}>Mentoring</button>
           <button className="nav-link" onClick={()=>setPage("kooperation")}>Kooperationen</button>
           <button className="nav-link" onClick={()=>{setPage("home");setTimeout(()=>document.getElementById("sec-kontakt")?.scrollIntoView({behavior:"smooth"}),100);}}>Kontakt</button>
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
         <div style={{display:"flex",gap:".5rem"}}>
           <button className="nav-cta" onClick={()=>setPage("anmeldung")}>Jetzt anmelden</button>
           
-        </div>
+        <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
       </nav>
       <div className="page">
         {page==="home" && <HomePage onAnmeldung={()=>setPage("anmeldung")} onPage={setPage} />}
@@ -609,7 +609,7 @@ export default function App() {
         {page==="beyond" && <BeyondSchoolPage onBack={()=>setPage("home")} />}
         {page==="mentoring" && <MentoringPage onBack={()=>setPage("home")} />}
         {page==="kooperation" && <KooperationPage onBack={()=>setPage("home")} />}
-      </div>
+      <img src="/VR.png" alt="VR Bank" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/lederer.png" alt="Lederer" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
     </>
   );
 }
