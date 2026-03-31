@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { WorkshopPage, BeyondSchoolPage, MentoringPage } from "./Pages";
-import KooperationPage from "./KooperationPage";
 import Anmeldung from "./Anmeldung";
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
