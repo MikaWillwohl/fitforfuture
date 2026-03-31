@@ -277,7 +277,7 @@ function HomePage({ onAnmeldung, onPage }) {
           <AccordionItem icon="🏭" title="Unternehmens-Workshops" id="acc-workshop">
             <p className="acc-text">Zu Beginn des Schuljahres stellen wir uns in jeder Klasse vor und erklären das Projekt. Danach können sich Schülerinnen und Schüler für bis zu 5 Unternehmen anmelden. Wir holen sie von der Schule ab, begleiten sie den ganzen Tag und bringen sie wieder zurück.</p>
             <p className="acc-text">Keine Firmenbesichtigung – sondern echte Praxis: Werkzeuge anfassen, mit Azubis reden, selbst ausprobieren. Weil man nur so herausfindet, ob ein Beruf wirklich passt.</p>
-            <img className="acc-photo" src="/foto4.jpg" alt="Workshop" />
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1rem",marginTop:"1rem"}}><img src="/STEFF.png" alt="Workshop" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /><img src="/SPA.png" alt="Workshop" style={{width:"100%",height:"220px",objectFit:"contain",borderRadius:".8rem",background:"#f5f0e8"}} /></div>
             <div className="acc-steps">
               <span className="acc-step">Klassenvorstellung</span>
               <span className="acc-step">Anmeldung (max. 5)</span>
