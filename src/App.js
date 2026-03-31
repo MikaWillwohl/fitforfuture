@@ -327,7 +327,7 @@ function HomePage({ onAnmeldung, onPage }) {
         <h2 className="section-h2">Das <em style={{fontStyle:"italic"}}>Team</em></h2>
         <p className="section-lead">Drei Freunde aus Lampertheim, die etwas verändern wollen – und 15 Teammitglieder, die das möglich machen.</p>
         <div className="team-grid">
-          {[["M","Mika Willwohl","https://www.linkedin.com/in/mika-willwohl-7b0b98193"],["B","Mika Back",null],["L","Luigi Imperato",null]].map(([a,n,r])=>(
+          {[["M","Mika Willwohl","https://www.linkedin.com/in/mika-willwohl-7b0b98193"],["B","Mika Back",null],["L","Luigi Imperato","https://www.linkedin.com/in/luigi-flavio-imperato-2462292a9"]].map(([a,n,r])=>(
             <div className="team-card" key={n}>
               <div className="team-avatar">{a}</div>
               <div className="team-name">{n}</div>
