@@ -55,6 +55,12 @@ const css = `
   .nav-cta:hover{background:#2d5c41;transform:translateY(-1px)}
   .nav-admin{background:transparent;color:${MUTED};padding:.5rem 1rem;border-radius:2rem;font-size:.78rem;font-weight:500;border:1px solid rgba(107,107,90,.3);cursor:pointer;transition:all .2s;margin-left:.5rem}
   .nav-admin:hover{border-color:${G};color:${G}}
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;border:none;background:none;padding:.4rem}
+  .hamburger span{display:block;width:22px;height:2px;background:${G};border-radius:2px;transition:all .3s}
+  .mobile-menu{display:none;position:fixed;top:4rem;left:0;right:0;background:rgba(245,240,232,.98);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,58,42,.1);padding:1.2rem 5vw;z-index:99;flex-direction:column;gap:.8rem}
+  .mobile-menu.open{display:flex}
+  .mobile-link{font-size:.9rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:${G};cursor:pointer;border:none;background:none;padding:.5rem 0;border-bottom:1px solid rgba(26,58,42,.08);text-align:left;width:100%}
+  .mobile-cta{background:${G};color:${LIME};padding:.8rem 1.2rem;border-radius:2rem;font-size:.88rem;font-weight:700;border:none;cursor:pointer;margin-top:.4rem;width:100%}
 
   .page{padding-top:4.5rem;min-height:100vh}
 
@@ -575,6 +581,7 @@ function Nav({ setPage }) {
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const [successData, setSuccessData] = useState(null);
   const [registrations, setRegistrations] = useState([]);
   const handleSuccess = (data) => { setRegistrations(prev=>[data,...prev]); setSuccessData(data); setPage("success"); };
