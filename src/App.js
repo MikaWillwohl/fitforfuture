@@ -40,7 +40,7 @@ const G="#1a3a2a",LIME="#c8f060",CREAM="#f5f0e8",WARM="#e8d8c0",MUTED="#6b6b5a";
 
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0;max-width:100%;}
+  *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Inter',sans-serif;background:${CREAM};color:${G};overflow-x:hidden;}
   ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:${CREAM}}::-webkit-scrollbar-thumb{background:rgba(26,58,42,.3);border-radius:3px}
   .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 5vw;background:rgba(245,240,232,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,58,42,.1)}
@@ -48,7 +48,7 @@ const css = `
   .nav-logo img{height:3rem;width:auto}
   .nav-logo-text{font-family:'Inter',sans-serif;font-size:1.2rem;color:${G}}
   .nav-logo-text span{color:#7ab828}
-  .nav-links{display:flex;gap:1.5rem}
+  .nav-links{display:flex;gap:1.5rem;align-items:center}
   .nav-link{font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:${MUTED};cursor:pointer;border:none;background:none;transition:color .2s;padding:.3rem 0}
   .nav-link:hover{color:${G}}
   .nav-cta{background:${G};color:${LIME};padding:.5rem 1.2rem;border-radius:2rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
@@ -587,11 +587,9 @@ function Nav({ setPage }) {
           {links.map(([l,p])=><button key={p} className="nav-link" onClick={()=>go(p)}>{l}</button>)}
         </div>
         <div style={{display:"flex",gap:".5rem",alignItems:"center"}}>
-          <button className="nav-cta" onClick={()=>{setPage("anmeldung");setMenuOpen(false);}}>Jetzt anmelden</button>
-          <button onClick={()=>setMenuOpen(!menuOpen)} style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:"5px",cursor:"pointer",border:"1.5px solid #1a3a2a",background:"#fff",padding:".5rem .6rem",borderRadius:".5rem",zIndex:200,position:"relative"}}>
-            <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
-            <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
-            <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
+          <button className="nav-cta" onClick={()=>setPage("anmeldung")}>Jetzt anmelden</button>
+          <button className="hamburger" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Menu">
+            <span></span><span></span><span></span>
           </button>
         </div>
       </nav>
