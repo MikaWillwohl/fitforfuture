@@ -180,9 +180,9 @@ const css = `
     .stats-row{grid-template-columns:1fr 1fr}
     .steps{grid-template-columns:1fr 1fr}
     .admin-stats{grid-template-columns:1fr 1fr}
-    .nav-links{display:none!important}
+    .nav-links{display:none}
     .hamburger{display:flex!important}
-    .nav-cta{display:none!important}
+    .nav-cta{display:none}
     .kontakt-grid{grid-template-columns:1fr}
     .photo-grid{grid-template-columns:1fr 1fr}
     .acc-highlights{grid-template-columns:1fr 1fr}
