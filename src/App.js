@@ -41,31 +41,25 @@ const G="#1a3a2a",LIME="#c8f060",CREAM="#f5f0e8",WARM="#e8d8c0",MUTED="#6b6b5a";
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Inter',sans-serif;background:${CREAM};color:${G};overflow-x:hidden;}
+  body{font-family:'Inter',sans-serif;background:${CREAM};color:${G};}
   ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:${CREAM}}::-webkit-scrollbar-thumb{background:rgba(26,58,42,.3);border-radius:3px}
   .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 5vw;background:rgba(245,240,232,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,58,42,.1)}
   .nav-logo{display:flex;align-items:center;gap:.7rem;cursor:pointer}
   .nav-logo img{height:3rem;width:auto}
   .nav-logo-text{font-family:'Inter',sans-serif;font-size:1.2rem;color:${G}}
   .nav-logo-text span{color:#7ab828}
-  .nav-links{display:flex;gap:1.5rem;align-items:center}
+  .nav-links{display:flex;gap:1.5rem}
   .nav-link{font-size:.82rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:${MUTED};cursor:pointer;border:none;background:none;transition:color .2s;padding:.3rem 0}
   .nav-link:hover{color:${G}}
   .nav-cta{background:${G};color:${LIME};padding:.5rem 1.2rem;border-radius:2rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
   .nav-cta:hover{background:#2d5c41;transform:translateY(-1px)}
   .nav-admin{background:transparent;color:${MUTED};padding:.5rem 1rem;border-radius:2rem;font-size:.78rem;font-weight:500;border:1px solid rgba(107,107,90,.3);cursor:pointer;transition:all .2s;margin-left:.5rem}
   .nav-admin:hover{border-color:${G};color:${G}}
-  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;border:none;background:none;padding:.4rem}
-  .hamburger span{display:block;width:22px;height:2px;background:${G};border-radius:2px;transition:all .3s}
-  .mobile-menu{display:none;position:fixed;top:4rem;left:0;right:0;background:rgba(245,240,232,.98);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,58,42,.1);padding:1.2rem 5vw;z-index:99;flex-direction:column;gap:.8rem}
-  .mobile-menu.open{display:flex}
-  .mobile-link{font-size:.9rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:${G};cursor:pointer;border:none;background:none;padding:.5rem 0;border-bottom:1px solid rgba(26,58,42,.08);text-align:left;width:100%}
-  .mobile-cta{background:${G};color:${LIME};padding:.8rem 1.2rem;border-radius:2rem;font-size:.88rem;font-weight:700;border:none;cursor:pointer;margin-top:.4rem;width:100%}
 
   .page{padding-top:4.5rem;min-height:100vh}
 
   /* HERO */
-  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 4.5rem);overflow:hidden}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 4.5rem)}
   .hero-l{display:flex;flex-direction:column;justify-content:center;padding:5vw 4vw 5vw 8vw}
   .hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:${LIME};color:${G};font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;border-radius:2rem;margin-bottom:1.5rem;width:fit-content}
   .hero-h1{font-family:'Inter',sans-serif;font-size:clamp(2.5rem,4.5vw,4.8rem);line-height:1.06;letter-spacing:-.02em;color:${G};margin-bottom:1.2rem}
@@ -172,37 +166,13 @@ const css = `
   .mobile-menu-link{font-size:.9rem;font-weight:600;color:#1a3a2a;padding:.7rem 0;border-bottom:1px solid rgba(26,58,42,.06);cursor:pointer;border:none;background:none;text-align:left;width:100%}
   .mobile-menu-link:last-child{border-bottom:none}
   @media(max-width:820px){
-    html,body{overflow-x:hidden!important;max-width:100vw}
-    .hero{grid-template-columns:1fr}.hero-r{min-height:220px}
-    .hero-l{padding:2rem 5vw}
-    .hero-stats{gap:1rem;flex-wrap:wrap}
-    .card-grid-3{grid-template-columns:1fr}
-    .stats-row{grid-template-columns:1fr 1fr}
-    .steps{grid-template-columns:1fr 1fr}
-    .admin-stats{grid-template-columns:1fr 1fr}
-    .nav-links{display:none}
-    .hamburger{display:flex!important}
-    .nav-cta{display:none}
-    .kontakt-grid{grid-template-columns:1fr}
-    .photo-grid{grid-template-columns:1fr 1fr}
-    .acc-highlights{grid-template-columns:1fr 1fr}
-    .winwin{flex-direction:column;gap:1.5rem;padding:1.5rem}
-    .section{padding:3rem 5vw}
-    .team-grid{grid-template-columns:1fr}
-    .hero-pill{max-width:100%}
-    .hero-r-inner{padding:1.5rem 1.5rem 2rem}
-    .ip-grid-2,.ip-grid-3{grid-template-columns:1fr!important}
-    .acc-header{padding:1rem 1.2rem}
-    .acc-body{padding:0 1.2rem 1.2rem}
+    .hamburger{display:flex}
+    .hero{grid-template-columns:1fr}.hero-r{min-height:300px}
+    .team-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}.hamburger{display:flex}.kontakt-grid{grid-template-columns:1fr}
+    .photo-grid{grid-template-columns:1fr 1fr}.acc-highlights{grid-template-columns:1fr 1fr}
+    .winwin{flex-direction:column;gap:1.5rem}.hero-l{padding:3rem 5vw}
   }
-  @media(max-width:480px){
-    .steps{grid-template-columns:1fr}
-    .acc-highlights{grid-template-columns:1fr}
-    .hero-h1{font-size:2rem!important}
-    .section-h2{font-size:1.5rem!important}
-    .stats-row{grid-template-columns:1fr 1fr}
-  }
-
 `;
 
 const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];
@@ -582,9 +552,11 @@ function Nav({ setPage }) {
           {links.map(([l,p])=><button key={p} className="nav-link" onClick={()=>go(p)}>{l}</button>)}
         </div>
         <div style={{display:"flex",gap:".5rem",alignItems:"center"}}>
-          <button className="nav-cta" onClick={()=>setPage("anmeldung")}>Jetzt anmelden</button>
-          <button className="hamburger" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Menu">
-            <span></span><span></span><span></span>
+          <button className="nav-cta" onClick={()=>{setPage("anmeldung");setMenuOpen(false);}}>Jetzt anmelden</button>
+          <button onClick={()=>setMenuOpen(!menuOpen)} style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:"5px",cursor:"pointer",border:"1.5px solid #1a3a2a",background:"#fff",padding:".5rem .6rem",borderRadius:".5rem",zIndex:200,position:"relative"}}>
+            <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
+            <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
+            <span style={{display:"block",width:"20px",height:"2px",background:"#1a3a2a",borderRadius:"2px"}}/>
           </button>
         </div>
       </nav>
@@ -603,7 +575,6 @@ function Nav({ setPage }) {
 
 export default function App() {
   const [page, setPage] = useState("home");
-  const [menuOpen, setMenuOpen] = React.useState(false);
   const [successData, setSuccessData] = useState(null);
   const [registrations, setRegistrations] = useState([]);
   const handleSuccess = (data) => { setRegistrations(prev=>[data,...prev]); setSuccessData(data); setPage("success"); };
