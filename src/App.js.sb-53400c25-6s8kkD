@@ -65,7 +65,7 @@ const css = `
   .page{padding-top:4.5rem;min-height:100vh}
 
   /* HERO */
-  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 4.5rem)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 4.5rem);overflow:hidden}
   .hero-l{display:flex;flex-direction:column;justify-content:center;padding:5vw 4vw 5vw 8vw}
   .hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:${LIME};color:${G};font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;border-radius:2rem;margin-bottom:1.5rem;width:fit-content}
   .hero-h1{font-family:'Inter',sans-serif;font-size:clamp(2.5rem,4.5vw,4.8rem);line-height:1.06;letter-spacing:-.02em;color:${G};margin-bottom:1.2rem}
