@@ -173,6 +173,43 @@ const css = `
     .photo-grid{grid-template-columns:1fr 1fr}.acc-highlights{grid-template-columns:1fr 1fr}
     .winwin{flex-direction:column;gap:1.5rem}.hero-l{padding:3rem 5vw}
   }
+
+  /* ── HAMBURGER ── */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:.4rem}
+  .hamburger span{display:block;width:22px;height:2px;background:#1a3a2a;border-radius:2px;transition:transform .25s,opacity .25s}
+  .mob-menu{display:none;position:fixed;top:3.8rem;left:0;right:0;background:#f5f0e8;border-bottom:2px solid rgba(26,58,42,.12);padding:1.2rem 6vw 1.6rem;z-index:200;flex-direction:column;gap:0;box-shadow:0 4px 20px rgba(26,58,42,.1)}
+  .mob-menu.open{display:flex}
+  .mob-link{font-size:.95rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a3a2a;cursor:pointer;border:none;background:none;padding:.85rem 0;border-bottom:1px solid rgba(26,58,42,.07);text-align:left;width:100%;transition:color .15s}
+  .mob-link:hover{color:#7ab828}
+  .mob-cta{background:#1a3a2a;color:#c8f060;padding:.85rem;border-radius:2rem;font-size:.9rem;font-weight:700;border:none;cursor:pointer;margin-top:.9rem;width:100%}
+
+  /* ── MOBILE ── */
+  @media(max-width:820px){
+    html,body{overflow-x:hidden}
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    .hamburger{display:flex}
+    .hero{grid-template-columns:1fr}
+    .hero-r{min-height:200px}
+    .hero-l{padding:2.5rem 5vw}
+    .hero-stats{gap:1rem;flex-wrap:wrap}
+    .card-grid-3{grid-template-columns:1fr}
+    .stats-row{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .team-grid{grid-template-columns:1fr}
+    .kontakt-grid{grid-template-columns:1fr}
+    .winwin{flex-direction:column;gap:1.2rem;padding:1.5rem}
+    .section{padding:2.5rem 5vw}
+    .acc-highlights{grid-template-columns:1fr 1fr}
+    .hero-pill{max-width:100%}
+    .hero-r-inner{padding:1.5rem}
+    .mob-companies{grid-template-columns:1fr 1fr!important}
+  }
+  @media(max-width:500px){
+    .steps{grid-template-columns:1fr}
+    .acc-highlights{grid-template-columns:1fr}
+    .mob-companies{grid-template-columns:1fr!important}
+  }
 `;
 
 const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];
@@ -216,7 +253,7 @@ function CompanyGrid() {
           <button key={k} onClick={()=>setAktiv(k)} style={{padding:".35rem .9rem",borderRadius:"2rem",fontSize:".78rem",fontWeight:600,border:"1.5px solid",borderColor:aktiv===k?"#1a3a2a":"rgba(26,58,42,.15)",background:aktiv===k?"#1a3a2a":"#fff",color:aktiv===k?"#c8f060":"#6b6b5a",cursor:"pointer",transition:"all .18s"}}>{k}</button>
         ))}
       </div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1rem"}}>
+      <div className="mob-companies" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"1rem"}}>
         {filtered.map(co=>{
           const [bg,text] = KAT_COLORS[co.kategorie]||["#f3f4f6","#374151"];
           return (
@@ -595,11 +632,23 @@ export default function App() {
           <button className="nav-link" onClick={()=>setPage("kooperation")}>Kooperationen</button>
           <button className="nav-link" onClick={()=>{setPage("home");setTimeout(()=>document.getElementById("sec-kontakt")?.scrollIntoView({behavior:"smooth"}),100);}}>Kontakt</button>
         </div>
-        <div style={{display:"flex",gap:".5rem"}}>
+        <div style={{display:"flex",gap:".5rem",alignItems:"center"}}>
           <button className="nav-cta" onClick={()=>setPage("anmeldung")}>Jetzt anmelden</button>
-          
+          <button className="hamburger" onClick={()=>setMenuOpen(function(m){return !m;})}>
+            <span style={{transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none"}}></span>
+            <span style={{opacity:menuOpen?0:1}}></span>
+            <span style={{transform:menuOpen?"rotate(-45deg) translate(5px,-5px)":"none"}}></span>
+          </button>
         </div>
       </nav>
+      <div className={"mob-menu"+(menuOpen?" open":"")}>
+        <button className="mob-link" onClick={function(){setPage("home");setMenuOpen(false);}}>Start</button>
+        <button className="mob-link" onClick={function(){setPage("workshops");setMenuOpen(false);}}>Workshops</button>
+        <button className="mob-link" onClick={function(){setPage("beyond");setMenuOpen(false);}}>Beyond School</button>
+        <button className="mob-link" onClick={function(){setPage("mentoring");setMenuOpen(false);}}>Mentoring</button>
+        <button className="mob-link" onClick={function(){setPage("home");setMenuOpen(false);setTimeout(function(){var el=document.getElementById("sec-kontakt");if(el)el.scrollIntoView({behavior:"smooth"});},150);}}>Kontakt</button>
+        <button className="mob-cta" onClick={function(){setPage("anmeldung");setMenuOpen(false);}}>Jetzt anmelden</button>
+      </div>
       <div className="page">
         {page==="home" && <HomePage onAnmeldung={()=>setPage("anmeldung")} onPage={setPage} />}
         {page==="anmeldung" && <Anmeldung onSuccess={handleSuccess} />}
