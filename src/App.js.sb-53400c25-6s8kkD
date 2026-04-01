@@ -202,12 +202,7 @@ const css = `
     .section-h2{font-size:1.5rem!important}
     .stats-row{grid-template-columns:1fr 1fr}
   }
-    .hero{grid-template-columns:1fr}.hero-r{min-height:300px}
-    .team-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:1fr 1fr}
-    .nav-links{display:none}.hamburger{display:flex}.kontakt-grid{grid-template-columns:1fr}
-    .photo-grid{grid-template-columns:1fr 1fr}.acc-highlights{grid-template-columns:1fr 1fr}
-    .winwin{flex-direction:column;gap:1.5rem}.hero-l{padding:3rem 5vw}
-  }
+
 `;
 
 const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];
