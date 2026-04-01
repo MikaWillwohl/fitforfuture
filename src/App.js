@@ -612,6 +612,7 @@ function Nav({ setPage }) {
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
   const [successData, setSuccessData] = useState(null);
   const [registrations, setRegistrations] = useState([]);
   const handleSuccess = (data) => { setRegistrations(prev=>[data,...prev]); setSuccessData(data); setPage("success"); };
