@@ -40,8 +40,8 @@ const G="#1a3a2a",LIME="#c8f060",CREAM="#f5f0e8",WARM="#e8d8c0",MUTED="#6b6b5a";
 
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Inter',sans-serif;background:${CREAM};color:${G};}
+  *{box-sizing:border-box;margin:0;padding:0;max-width:100%;}
+  body{font-family:'Inter',sans-serif;background:${CREAM};color:${G};overflow-x:hidden;}
   ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:${CREAM}}::-webkit-scrollbar-thumb{background:rgba(26,58,42,.3);border-radius:3px}
   .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 5vw;background:rgba(245,240,232,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,58,42,.1)}
   .nav-logo{display:flex;align-items:center;gap:.7rem;cursor:pointer}
@@ -172,7 +172,36 @@ const css = `
   .mobile-menu-link{font-size:.9rem;font-weight:600;color:#1a3a2a;padding:.7rem 0;border-bottom:1px solid rgba(26,58,42,.06);cursor:pointer;border:none;background:none;text-align:left;width:100%}
   .mobile-menu-link:last-child{border-bottom:none}
   @media(max-width:820px){
-    .hamburger{display:flex}
+    html,body{overflow-x:hidden!important;max-width:100vw}
+    .hero{grid-template-columns:1fr}.hero-r{min-height:220px}
+    .hero-l{padding:2rem 5vw}
+    .hero-stats{gap:1rem;flex-wrap:wrap}
+    .card-grid-3{grid-template-columns:1fr}
+    .stats-row{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .admin-stats{grid-template-columns:1fr 1fr}
+    .nav-links{display:none!important}
+    .hamburger{display:flex!important}
+    .nav-cta{display:none!important}
+    .kontakt-grid{grid-template-columns:1fr}
+    .photo-grid{grid-template-columns:1fr 1fr}
+    .acc-highlights{grid-template-columns:1fr 1fr}
+    .winwin{flex-direction:column;gap:1.5rem;padding:1.5rem}
+    .section{padding:3rem 5vw}
+    .team-grid{grid-template-columns:1fr}
+    .hero-pill{max-width:100%}
+    .hero-r-inner{padding:1.5rem 1.5rem 2rem}
+    .ip-grid-2,.ip-grid-3{grid-template-columns:1fr!important}
+    .acc-header{padding:1rem 1.2rem}
+    .acc-body{padding:0 1.2rem 1.2rem}
+  }
+  @media(max-width:480px){
+    .steps{grid-template-columns:1fr}
+    .acc-highlights{grid-template-columns:1fr}
+    .hero-h1{font-size:2rem!important}
+    .section-h2{font-size:1.5rem!important}
+    .stats-row{grid-template-columns:1fr 1fr}
+  }
     .hero{grid-template-columns:1fr}.hero-r{min-height:300px}
     .team-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:1fr 1fr}
     .nav-links{display:none}.hamburger{display:flex}.kontakt-grid{grid-template-columns:1fr}
