@@ -212,7 +212,32 @@ const css = `
   }
 `;
 
-const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];
+const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];const TEAM_MEMBERS = [
+  {name:"Constantin Morweiser",li:"https://www.linkedin.com/in/constantin-morweiser-ab25bb2a2/"},
+  {name:"Laurin Morweiser",li:"https://www.linkedin.com/in/laurin-morweiser-962015287/"},
+  {name:"Yannick Ulpins",li:"https://www.linkedin.com/in/yannick-ulpins-university-mannheim-bwl/"},
+  {name:"Lars Dommermuth",li:"https://www.linkedin.com/in/lars-dommermuth-8a1bb6363/"},
+  {name:"Edgar Schwarze",li:null},
+  {name:"Luisa Lurg",li:"https://www.linkedin.com/in/luisa-lurg-a20646382/"},
+  {name:"Sophia Lurg",li:null},
+  {name:"Franka Thierfelder",li:null},
+  {name:"Julius Keinz",li:"https://www.linkedin.com/in/julius-keinz-25533630b/"},
+  {name:"Anna Röß",li:null},
+  {name:"Hannah Winkenbach",li:null},
+  {name:"Philipp Reiber",li:"https://www.linkedin.com/in/philipp-reiber-9495132a9/"},
+  {name:"Lea Habel",li:null},
+  {name:"Luca Ost",li:null},
+];
+```
+
+---
+
+**Schritt 2 — alten Textblock ersetzen:**
+
+1. **Strg+F** → such nach: `Neben den drei Gründern`
+2. Markiere den **ganzen Block** der so anfängt:
+```
+<div style={{marginTop:"2rem",background:"#fff"...
 
 function AccordionItem({ icon, title, children, id }) {
   const [open, setOpen] = useState(false);
@@ -373,9 +398,26 @@ function HomePage({ onAnmeldung, onPage }) {
             </div>
           ))}
         </div>
-        <div style={{marginTop:"2rem",background:"#fff",borderRadius:"1.2rem",padding:"1.5rem 2rem",border:"1px solid rgba(26,58,42,.07)"}}>
-          <p style={{fontSize:".9rem",color:MUTED,lineHeight:1.75}}>Neben den drei Gründern besteht unser Team aus <strong style={{color:G}}>15 aktiven Mitgliedern</strong>, die Workshops koordinieren, Schülerinnen und Schüler begleiten und das Projekt jeden Tag ein Stück weiterbringen. Jeder bringt eigene Stärken ein – gemeinsam machen wir FitForFuture möglich.</p>
-        </div>
+        <div style={{display:"flex",alignItems:"center",gap:"1rem",margin:"2.5rem 0 1.5rem"}}>
+  <div style={{flex:1,height:"1px",background:"rgba(26,58,42,.1)"}}></div>
+  <span style={{fontSize:".7rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:MUTED}}>Teammitglieder</span>
+  <div style={{flex:1,height:"1px",background:"rgba(26,58,42,.1)"}}></div>
+</div>
+<div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:".9rem"}}>
+  {TEAM_MEMBERS.map(({name,li})=>{
+    const ini=name.split(" ").map(w=>w[0]).join("").slice(0,2);
+    return (
+      <div key={name} style={{background:"#fff",borderRadius:"1rem",padding:"1.2rem 1rem",textAlign:"center",border:"1px solid rgba(26,58,42,.07)",transition:"transform .2s"}}
+        onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
+        onMouseLeave={e=>e.currentTarget.style.transform="none"}>
+        <div style={{width:48,height:48,borderRadius:"50%",background:"rgba(26,58,42,.06)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1rem",fontWeight:700,color:G,margin:"0 auto .65rem"}}>{ini}</div>
+        <div style={{fontWeight:600,fontSize:".85rem",color:G,lineHeight:1.3,marginBottom:".25rem"}}>{name}</div>
+        <div style={{fontSize:".75rem",color:MUTED}}>Teammitglied</div>
+        {li && <a href={li} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:".5rem",background:"#0077b5",color:"#fff",padding:".2rem .65rem",borderRadius:"2rem",fontSize:".7rem",fontWeight:600,textDecoration:"none"}}>LinkedIn →</a>}
+      </div>
+    );
+  })}
+</div>
       </div>
 
       {/* PARTNER */}
