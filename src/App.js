@@ -262,7 +262,7 @@ function HomePage({ onAnmeldung, onPage }) {
           <div className="hero-stats">
             <div><div className="stat-n">30<span>+</span></div><div className="stat-l">Partnerunternehmen</div></div>
             <div><div className="stat-n">280<span>+</span></div><div className="stat-l">Schüler erreicht</div></div>
-            <div><div className="stat-n">15</div><div className="stat-l">Teammitglieder</div></div>
+            <div><div className="stat-n">17</div><div className="stat-l">Teammitglieder</div></div>
           </div>
         </div>
         <div className="hero-r">
@@ -326,7 +326,7 @@ function HomePage({ onAnmeldung, onPage }) {
       <div className="section warm">
         <div className="section-label">Wer wir sind</div>
         <h2 className="section-h2">Das <em style={{fontStyle:"italic"}}>Team</em></h2>
-        <p className="section-lead">Drei Freunde aus Lampertheim, die etwas verändern wollen – und 14 Teammitglieder, die das möglich machen.</p>
+        <p className="section-lead">Drei Freunde aus Bürstadt, die etwas verändern wollen – und 14 Teammitglieder, die das möglich machen.</p>
         <div className="team-grid">
           {[["M","Mika Willwohl","https://www.linkedin.com/in/mika-willwohl-7b0b98193"],["B","Mika Back","https://www.linkedin.com/in/mika-back-057b47286"],["L","Luigi Imperato","https://www.linkedin.com/in/luigi-flavio-imperato-2462292a9"]].map(([a,n,r])=>(
             <div className="team-card" key={n}>
