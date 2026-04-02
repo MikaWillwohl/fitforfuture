@@ -36,6 +36,23 @@ const COMPANY_DATA = [
   {name:"Kita St. Peter Bürstadt",branche:"Kindertagesbetreuung",kategorie:"Bildung / Soziales",web:null},
 ];
 
+const TEAM_MEMBERS = [
+  {name:"Constantin Morweiser",li:"https://www.linkedin.com/in/constantin-morweiser-ab25bb2a2/"},
+  {name:"Laurin Morweiser",li:"https://www.linkedin.com/in/laurin-morweiser-962015287/"},
+  {name:"Yannick Ulpins",li:"https://www.linkedin.com/in/yannick-ulpins-university-mannheim-bwl/"},
+  {name:"Lars Dommermuth",li:"https://www.linkedin.com/in/lars-dommermuth-8a1bb6363/"},
+  {name:"Edgar Schwarze",li:null},
+  {name:"Luisa Lurg",li:"https://www.linkedin.com/in/luisa-lurg-a20646382/"},
+  {name:"Sophia Lurg",li:null},
+  {name:"Franka Thierfelder",li:null},
+  {name:"Julius Keinz",li:"https://www.linkedin.com/in/julius-keinz-25533630b/"},
+  {name:"Anna Röß",li:null},
+  {name:"Hannah Winkenbach",li:null},
+  {name:"Philipp Reiber",li:"https://www.linkedin.com/in/philipp-reiber-9495132a9/"},
+  {name:"Lea Habel",li:null},
+  {name:"Luca Ost",li:null},
+];
+
 const G="#1a3a2a",LIME="#c8f060",CREAM="#f5f0e8",WARM="#e8d8c0",MUTED="#6b6b5a";
 
 const css = `
@@ -53,15 +70,9 @@ const css = `
   .nav-link:hover{color:${G}}
   .nav-cta{background:${G};color:${LIME};padding:.5rem 1.2rem;border-radius:2rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
   .nav-cta:hover{background:#2d5c41;transform:translateY(-1px)}
-  .nav-admin{background:transparent;color:${MUTED};padding:.5rem 1rem;border-radius:2rem;font-size:.78rem;font-weight:500;border:1px solid rgba(107,107,90,.3);cursor:pointer;transition:all .2s;margin-left:.5rem}
-  .nav-admin:hover{border-color:${G};color:${G}}
-
   .page{padding-top:4.5rem;min-height:100vh}
-
-  /* HERO */
   .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 4.5rem)}
   .hero-l{display:flex;flex-direction:column;justify-content:center;padding:5vw 4vw 5vw 8vw}
-  .hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:${LIME};color:${G};font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;border-radius:2rem;margin-bottom:1.5rem;width:fit-content}
   .hero-h1{font-family:'Inter',sans-serif;font-size:clamp(2.5rem,4.5vw,4.8rem);line-height:1.06;letter-spacing:-.02em;color:${G};margin-bottom:1.2rem}
   .hero-h1 em{font-style:italic;color:#7ab828}
   .hero-sub{font-size:1rem;line-height:1.7;color:${MUTED};max-width:42ch;margin-bottom:2rem}
@@ -80,11 +91,6 @@ const css = `
   .hero-quote{font-family:'Inter',sans-serif;font-size:clamp(1.3rem,2vw,1.8rem);color:${CREAM};line-height:1.4;font-style:italic;margin-bottom:1.2rem}
   .hero-quote-attr{font-size:.78rem;color:rgba(245,240,232,.55);letter-spacing:.06em;text-transform:uppercase}
   .hero-pill{background:rgba(200,240,96,.12);border:1px solid rgba(200,240,96,.25);border-radius:.8rem;padding:1rem 1.2rem;margin-top:1.2rem;max-width:260px}
-  .pill-l{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(200,240,96,.55);margin-bottom:.25rem}
-  .pill-v{font-family:'Inter',sans-serif;font-size:1.4rem;color:${LIME}}
-  .pill-s{font-size:.76rem;color:rgba(245,240,232,.45)}
-
-  /* SECTIONS */
   .section{padding:5rem 8vw}
   .section.dark{background:${G}}
   .section.warm{background:${WARM}}
@@ -94,8 +100,6 @@ const css = `
   .section.dark .section-h2{color:${CREAM}}
   .section-lead{font-size:.95rem;line-height:1.75;color:${MUTED};max-width:58ch;margin-bottom:3rem}
   .section.dark .section-lead{color:rgba(245,240,232,.6)}
-
-  /* ACCORDION */
   .accordion{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem}
   .acc-item{background:#fff;border-radius:1.2rem;border:1px solid rgba(26,58,42,.08);overflow:hidden;transition:box-shadow .2s}
   .acc-item.open{box-shadow:0 8px 30px rgba(26,58,42,.1)}
@@ -115,20 +119,15 @@ const css = `
   .acc-hl{background:rgba(26,58,42,.04);border-radius:.8rem;padding:1rem;text-align:center}
   .acc-hl-num{font-family:'Inter',sans-serif;font-size:2rem;color:${G};line-height:1}
   .acc-hl-l{font-size:.75rem;color:${MUTED};margin-top:.2rem}
-
-  /* TEAM */
   .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
   .team-card{background:#fff;border-radius:1.2rem;padding:2rem;text-align:center;border:1px solid rgba(26,58,42,.07);transition:transform .2s}
   .team-card:hover{transform:translateY(-3px)}
   .team-avatar{width:80px;height:80px;border-radius:50%;background:${G};display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:2rem;color:${LIME};margin:0 auto 1rem}
   .team-name{font-weight:700;font-size:1rem;color:${G};margin-bottom:.3rem}
   .team-role{font-size:.82rem;color:${MUTED}}
-
-  /* FOTOS */
-  .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
-  .photo-grid img{width:100%;height:220px;object-fit:cover;border-radius:1rem}
-
-  /* STATS */
+  .team-members-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:1.5rem}
+  .team-member-card{background:#fff;border-radius:1rem;padding:1.2rem 1rem;text-align:center;border:1px solid rgba(26,58,42,.07);transition:transform .2s}
+  .team-member-card:hover{transform:translateY(-2px)}
   .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-bottom:3rem}
   .stat-card{background:#fff;border-radius:1.2rem;padding:1.8rem 1.5rem;text-align:center;border:1px solid rgba(26,58,42,.06);transition:transform .2s}
   .stat-card:hover{transform:translateY(-3px)}
@@ -137,15 +136,11 @@ const css = `
   .stat-card.accent .ec-l{color:rgba(245,240,232,.55)}
   .ec-n{font-family:'Inter',sans-serif;font-size:3.2rem;color:${G};line-height:1}
   .ec-l{font-size:.78rem;color:${MUTED};margin-top:.4rem;line-height:1.4}
-
-  /* WINWIN */
   .winwin{background:linear-gradient(135deg,#7ab828,${G} 60%);border-radius:1.4rem;padding:2.5rem 3rem;display:flex;align-items:center;gap:3rem;margin-top:2rem}
   .winwin-text h3{font-family:'Inter',sans-serif;font-size:1.6rem;color:${CREAM};margin-bottom:.7rem;font-style:italic}
   .winwin-text p{font-size:.87rem;color:rgba(245,240,232,.65);line-height:1.65}
   .winwin-badges{display:flex;flex-direction:column;gap:.6rem;flex-shrink:0}
   .wbadge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:.5rem;padding:.5rem 1rem;font-size:.8rem;color:${CREAM};font-weight:600;white-space:nowrap}
-
-  /* KONTAKT */
   .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
   .kontakt-item{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
   .kontakt-icon{width:2.5rem;height:2.5rem;background:${G};border-radius:.6rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
@@ -154,27 +149,6 @@ const css = `
   .kontakt-right{background:${G};border-radius:1.4rem;padding:2.5rem;text-align:center}
   .kontakt-right h3{font-family:'Inter',sans-serif;font-size:1.8rem;color:${CREAM};margin-bottom:.8rem;font-style:italic}
   .kontakt-right p{font-size:.88rem;color:rgba(245,240,232,.6);margin-bottom:1.5rem;line-height:1.6}
-
-  /* PARTNER */
-  .partner-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
-  .partner-tag{background:#fff;border:1px solid rgba(26,58,42,.1);border-radius:.6rem;padding:.4rem .9rem;font-size:.8rem;font-weight:500;color:${G}}
-
-  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:.4rem}
-  .hamburger span{display:block;width:24px;height:2px;background:#1a3a2a;border-radius:2px;transition:all .3s}
-  .mobile-menu{display:none;position:fixed;top:4.5rem;left:0;right:0;background:rgba(245,240,232,.98);backdrop-filter:blur(12px);padding:1rem 5vw 1.5rem;border-bottom:1px solid rgba(26,58,42,.1);z-index:99;flex-direction:column;gap:.3rem}
-  .mobile-menu.open{display:flex}
-  .mobile-menu-link{font-size:.9rem;font-weight:600;color:#1a3a2a;padding:.7rem 0;border-bottom:1px solid rgba(26,58,42,.06);cursor:pointer;border:none;background:none;text-align:left;width:100%}
-  .mobile-menu-link:last-child{border-bottom:none}
-  @media(max-width:820px){
-    .hamburger{display:flex}
-    .hero{grid-template-columns:1fr}.hero-r{min-height:300px}
-    .team-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:1fr 1fr}
-    .nav-links{display:none}.hamburger{display:flex}.kontakt-grid{grid-template-columns:1fr}
-    .photo-grid{grid-template-columns:1fr 1fr}.acc-highlights{grid-template-columns:1fr 1fr}
-    .winwin{flex-direction:column;gap:1.5rem}.hero-l{padding:3rem 5vw}
-  }
-
-  /* ── HAMBURGER ── */
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:.4rem}
   .hamburger span{display:block;width:22px;height:2px;background:#1a3a2a;border-radius:2px;transition:transform .25s,opacity .25s}
   .mob-menu{display:none;position:fixed;top:3.8rem;left:0;right:0;background:#f5f0e8;border-bottom:2px solid rgba(26,58,42,.12);padding:1.2rem 6vw 1.6rem;z-index:200;flex-direction:column;gap:0;box-shadow:0 4px 20px rgba(26,58,42,.1)}
@@ -182,8 +156,6 @@ const css = `
   .mob-link{font-size:.95rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a3a2a;cursor:pointer;border:none;background:none;padding:.85rem 0;border-bottom:1px solid rgba(26,58,42,.07);text-align:left;width:100%;transition:color .15s}
   .mob-link:hover{color:#7ab828}
   .mob-cta{background:#1a3a2a;color:#c8f060;padding:.85rem;border-radius:2rem;font-size:.9rem;font-weight:700;border:none;cursor:pointer;margin-top:.9rem;width:100%}
-
-  /* ── MOBILE ── */
   @media(max-width:820px){
     html,body{overflow-x:hidden}
     .nav-links{display:none}
@@ -193,10 +165,9 @@ const css = `
     .hero-r{min-height:200px}
     .hero-l{padding:2.5rem 5vw}
     .hero-stats{gap:1rem;flex-wrap:wrap}
-    .card-grid-3{grid-template-columns:1fr}
     .stats-row{grid-template-columns:1fr 1fr}
-    .steps{grid-template-columns:1fr 1fr}
     .team-grid{grid-template-columns:1fr}
+    .team-members-grid{grid-template-columns:1fr 1fr}
     .kontakt-grid{grid-template-columns:1fr}
     .winwin{flex-direction:column;gap:1.2rem;padding:1.5rem}
     .section{padding:2.5rem 5vw}
@@ -206,38 +177,13 @@ const css = `
     .mob-companies{grid-template-columns:1fr 1fr!important}
   }
   @media(max-width:500px){
-    .steps{grid-template-columns:1fr}
     .acc-highlights{grid-template-columns:1fr}
     .mob-companies{grid-template-columns:1fr!important}
+    .team-members-grid{grid-template-columns:1fr 1fr}
   }
 `;
 
-const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];const TEAM_MEMBERS = [
-  {name:"Constantin Morweiser",li:"https://www.linkedin.com/in/constantin-morweiser-ab25bb2a2/"},
-  {name:"Laurin Morweiser",li:"https://www.linkedin.com/in/laurin-morweiser-962015287/"},
-  {name:"Yannick Ulpins",li:"https://www.linkedin.com/in/yannick-ulpins-university-mannheim-bwl/"},
-  {name:"Lars Dommermuth",li:"https://www.linkedin.com/in/lars-dommermuth-8a1bb6363/"},
-  {name:"Edgar Schwarze",li:null},
-  {name:"Luisa Lurg",li:"https://www.linkedin.com/in/luisa-lurg-a20646382/"},
-  {name:"Sophia Lurg",li:null},
-  {name:"Franka Thierfelder",li:null},
-  {name:"Julius Keinz",li:"https://www.linkedin.com/in/julius-keinz-25533630b/"},
-  {name:"Anna Röß",li:null},
-  {name:"Hannah Winkenbach",li:null},
-  {name:"Philipp Reiber",li:"https://www.linkedin.com/in/philipp-reiber-9495132a9/"},
-  {name:"Lea Habel",li:null},
-  {name:"Luca Ost",li:null},
-];
-```
-
----
-
-**Schritt 2 — alten Textblock ersetzen:**
-
-1. **Strg+F** → such nach: `Neben den drei Gründern`
-2. Markiere den **ganzen Block** der so anfängt:
-```
-<div style={{marginTop:"2rem",background:"#fff"...
+const COMPANIES = ["Stadtmüller","ElektroBrenner","Rewe","Agrarmarkt Engert","Köbig","Furniture","Rechtsanwalt","BASF","Back- und Brauhaus Drayß","Autohaus Jakob und Morweiser","Autohaus Kohl","Reisebüro","Immowien","Versicherung","Persönlichkeitsworkshop","Finanzworkshop","Bewerbungscoaching","RhConstruction","Brillenschlange","Caritas","Mittendrin","Kita St. Peter","Sima Bau","Demokratieworkshop","GS Wärmesysteme","Bäcker Blüm","VR Bank","Sparkasse","KVHS Workshops"];
 
 function AccordionItem({ icon, title, children, id }) {
   const [open, setOpen] = useState(false);
@@ -251,7 +197,6 @@ function AccordionItem({ icon, title, children, id }) {
     </div>
   );
 }
-
 
 const KAT_COLORS = {
   "Handwerk / Bau":["#fef3c7","#92400e"],
@@ -304,11 +249,11 @@ function CompanyGrid() {
 function HomePage({ onAnmeldung, onPage }) {
   return (
     <div>
-      {/* HERO */}
       <div className="hero">
         <div className="hero-l">
           <div style={{display:"flex",alignItems:"center",gap:".6rem",marginBottom:"1.5rem"}}><div style={{width:"2px",height:"2rem",background:"#7ab828"}}></div><span style={{fontSize:".78rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:"#7ab828"}}>Bürstadt · Kreis Bergstraße</span></div>
-          <div style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(3rem,6vw,6rem)",color:"#7ab828",fontWeight:400,lineHeight:1,marginBottom:".3rem",letterSpacing:"-.03em"}}>FitForFuture</div><h1 className="hero-h1" style={{fontSize:"clamp(1.4rem,2.5vw,2.5rem)"}}>Mehr als nur <em>Berufsorientierung.</em></h1>
+          <div style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(3rem,6vw,6rem)",color:"#7ab828",fontWeight:400,lineHeight:1,marginBottom:".3rem",letterSpacing:"-.03em"}}>FitForFuture</div>
+          <h1 className="hero-h1" style={{fontSize:"clamp(1.4rem,2.5vw,2.5rem)"}}>Mehr als nur <em>Berufsorientierung.</em></h1>
           <p className="hero-sub">Wir verbinden Schülerinnen und Schüler mit lokalen Unternehmen – praxisnah, auf Augenhöhe und mit echtem Mehrwert.</p>
           <div className="hero-btns">
             <button className="btn-primary" onClick={onAnmeldung}>Jetzt anmelden →</button>
@@ -325,12 +270,10 @@ function HomePage({ onAnmeldung, onPage }) {
           <div className="hero-r-inner">
             <p className="hero-quote">„Oft muss man nicht wegziehen – der richtige Beruf ist direkt vor der Haustür."</p>
             <p className="hero-quote-attr">— FitForFuture Gründer</p>
-
           </div>
         </div>
       </div>
 
-      {/* PROGRAMM ACCORDION */}
       <div className="section" id="sec-programm">
         <div className="section-label">Unser Programm</div>
         <h2 className="section-h2">Alles was du <em style={{fontStyle:"italic"}}>wissen musst</em></h2>
@@ -353,7 +296,6 @@ function HomePage({ onAnmeldung, onPage }) {
               <div className="acc-hl"><div className="acc-hl-num">30+</div><div className="acc-hl-l">Partnerunternehmen</div></div>
             </div>
           </AccordionItem>
-
           <AccordionItem icon="✨" title="Beyond-School-Workshops" id="acc-beyond">
             <p className="acc-text">Das Schulsystem deckt nicht alles ab. Deshalb bieten wir ergänzende Workshops zu Themen an, die fürs Leben wirklich wichtig sind – aber im Unterricht oft fehlen.</p>
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".7rem",marginTop:"1rem"}}>
@@ -365,7 +307,6 @@ function HomePage({ onAnmeldung, onPage }) {
               ))}
             </div>
           </AccordionItem>
-
           <AccordionItem icon="💬" title="Mentoring-Programm" id="acc-mentoring">
             <p className="acc-text">Mentoren aus unserem Netzwerk begleiten Schülerinnen und Schüler über einen längeren Zeitraum individuell – als persönliche Ansprechpartner auf Augenhöhe.</p>
             <p className="acc-text">Sie geben Einblicke in ihren eigenen Werdegang, helfen bei Bewerbungen, Studien- und Berufswahl und stehen bei persönlichen Fragen zur Seite. Denn Mentoring ist mehr als Wissensweitergabe – es ist ein echter Perspektivwechsel.</p>
@@ -374,7 +315,6 @@ function HomePage({ onAnmeldung, onPage }) {
               <p style={{fontSize:".78rem",color:"rgba(245,240,232,.45)",marginTop:".5rem",letterSpacing:".06em",textTransform:"uppercase"}}>— FitForFuture Mentoring</p>
             </div>
           </AccordionItem>
-
           <AccordionItem icon="📊" title="Über das Projekt">
             <p className="acc-text">FitForFuture wurde von drei Freunden gegründet, die gemeinsam die Grundschule besucht und 2023 ihr Abitur in Lampertheim absolviert haben. Dank der Unterstützung von Rüdiger Engert und der Bürgerstiftung Bürstadt konnten wir unser Herzensprojekt umsetzen.</p>
             <p className="acc-text">Im ersten Zyklus 2025 haben wir 18 Workshops mit über 400 Anmeldungen bei rund 280 Schülerinnen und Schülern durchgeführt. Ein zweiter Zyklus folgt direkt nach den Osterferien.</p>
@@ -383,11 +323,10 @@ function HomePage({ onAnmeldung, onPage }) {
         </div>
       </div>
 
-      {/* TEAM */}
       <div className="section warm">
         <div className="section-label">Wer wir sind</div>
         <h2 className="section-h2">Das <em style={{fontStyle:"italic"}}>Team</em></h2>
-        <p className="section-lead">Drei Freunde aus Lampertheim, die etwas verändern wollen – und 15 Teammitglieder, die das möglich machen.</p>
+        <p className="section-lead">Drei Freunde aus Lampertheim, die etwas verändern wollen – und 14 Teammitglieder, die das möglich machen.</p>
         <div className="team-grid">
           {[["M","Mika Willwohl","https://www.linkedin.com/in/mika-willwohl-7b0b98193"],["B","Mika Back","https://www.linkedin.com/in/mika-back-057b47286"],["L","Luigi Imperato","https://www.linkedin.com/in/luigi-flavio-imperato-2462292a9"]].map(([a,n,r])=>(
             <div className="team-card" key={n}>
@@ -399,28 +338,25 @@ function HomePage({ onAnmeldung, onPage }) {
           ))}
         </div>
         <div style={{display:"flex",alignItems:"center",gap:"1rem",margin:"2.5rem 0 1.5rem"}}>
-  <div style={{flex:1,height:"1px",background:"rgba(26,58,42,.1)"}}></div>
-  <span style={{fontSize:".7rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:MUTED}}>Teammitglieder</span>
-  <div style={{flex:1,height:"1px",background:"rgba(26,58,42,.1)"}}></div>
-</div>
-<div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:".9rem"}}>
-  {TEAM_MEMBERS.map(({name,li})=>{
-    const ini=name.split(" ").map(w=>w[0]).join("").slice(0,2);
-    return (
-      <div key={name} style={{background:"#fff",borderRadius:"1rem",padding:"1.2rem 1rem",textAlign:"center",border:"1px solid rgba(26,58,42,.07)",transition:"transform .2s"}}
-        onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
-        onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-        <div style={{width:48,height:48,borderRadius:"50%",background:"rgba(26,58,42,.06)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1rem",fontWeight:700,color:G,margin:"0 auto .65rem"}}>{ini}</div>
-        <div style={{fontWeight:600,fontSize:".85rem",color:G,lineHeight:1.3,marginBottom:".25rem"}}>{name}</div>
-        <div style={{fontSize:".75rem",color:MUTED}}>Teammitglied</div>
-        {li && <a href={li} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:".5rem",background:"#0077b5",color:"#fff",padding:".2rem .65rem",borderRadius:"2rem",fontSize:".7rem",fontWeight:600,textDecoration:"none"}}>LinkedIn →</a>}
-      </div>
-    );
-  })}
-</div>
+          <div style={{flex:1,height:"1px",background:"rgba(26,58,42,.1)"}}></div>
+          <span style={{fontSize:".7rem",fontWeight:700,letterSpacing:".12em",textTransform:"uppercase",color:MUTED}}>Teammitglieder</span>
+          <div style={{flex:1,height:"1px",background:"rgba(26,58,42,.1)"}}></div>
+        </div>
+        <div className="team-members-grid">
+          {TEAM_MEMBERS.map(({name,li})=>{
+            const ini=name.split(" ").map(w=>w[0]).join("").slice(0,2);
+            return (
+              <div className="team-member-card" key={name}>
+                <div style={{width:48,height:48,borderRadius:"50%",background:"rgba(26,58,42,.06)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1rem",fontWeight:700,color:G,margin:"0 auto .65rem"}}>{ini}</div>
+                <div style={{fontWeight:600,fontSize:".85rem",color:G,lineHeight:1.3,marginBottom:".25rem"}}>{name}</div>
+                <div style={{fontSize:".75rem",color:MUTED}}>Teammitglied</div>
+                {li && <a href={li} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:".5rem",background:"#0077b5",color:"#fff",padding:".2rem .65rem",borderRadius:"2rem",fontSize:".7rem",fontWeight:600,textDecoration:"none"}}>LinkedIn →</a>}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* PARTNER */}
       <div className="section warm">
         <div className="section-label">Unsere Partner</div>
         <h2 className="section-h2">30+ Unternehmen <em style={{fontStyle:"italic"}}>aus Bürstadt</em></h2>
@@ -428,7 +364,6 @@ function HomePage({ onAnmeldung, onPage }) {
         <CompanyGrid />
       </div>
 
-      {/* FOTOS */}
       <div className="section">
         <div className="section-label">Einblicke</div>
         <h2 className="section-h2">FitForFuture <em style={{fontStyle:"italic"}}>in Aktion</em></h2>
@@ -441,7 +376,6 @@ function HomePage({ onAnmeldung, onPage }) {
         </div>
       </div>
 
-      {/* ERFOLGE */}
       <div className="section">
         <div className="section-label">Zahlen & Erfolge</div>
         <h2 className="section-h2">Was wir bisher <em style={{fontStyle:"italic"}}>erreicht haben</em></h2>
@@ -464,7 +398,6 @@ function HomePage({ onAnmeldung, onPage }) {
         </div>
       </div>
 
-      {/* KONTAKT */}
       <div className="section dark" id="sec-kontakt">
         <div className="section-label">Kontakt</div>
         <h2 className="section-h2">Schreib uns <em style={{fontStyle:"italic"}}>einfach</em></h2>
@@ -496,7 +429,6 @@ function HomePage({ onAnmeldung, onPage }) {
         </div>
       </div>
 
-      {/* FOOTER */}
       <div style={{background:"#111",padding:"2rem 8vw",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1rem"}}>
         <div style={{display:"flex",alignItems:"center",gap:".7rem"}}>
           <img src="/logo.png" alt="Logo" style={{height:"1.8rem"}} />
@@ -552,7 +484,7 @@ function AdminPage({ registrations }) {
         <p style={{fontSize:".88rem",color:MUTED,marginBottom:"1.5rem"}}>Nur für FitForFuture-Team.</p>
         <input type="password" placeholder="Passwort" value={pw}
           onChange={e=>{setPw(e.target.value);setPwErr(false);}} onKeyDown={e=>e.key==="Enter"&&login()}
-          style={{width:"100%",padding:".7rem 1rem",border:`1.5px solid rgba(26,58,42,.2)`,borderRadius:".7rem",fontFamily:"'Inter',sans-serif",fontSize:"1rem",color:G,background:"#fff",outline:"none",textAlign:"center",letterSpacing:".1em",marginBottom:".8rem"}}/>
+          style={{width:"100%",padding:".7rem 1rem",border:"1.5px solid rgba(26,58,42,.2)",borderRadius:".7rem",fontFamily:"'Inter',sans-serif",fontSize:"1rem",color:G,background:"#fff",outline:"none",textAlign:"center",letterSpacing:".1em",marginBottom:".8rem"}}/>
         {pwErr && <div style={{fontSize:".8rem",color:"#c0392b",marginBottom:".8rem"}}>Falsches Passwort.</div>}
         <button onClick={login} style={{width:"100%",padding:".75rem",background:G,color:LIME,border:"none",borderRadius:".7rem",fontFamily:"'Inter',sans-serif",fontSize:".92rem",fontWeight:700,cursor:"pointer"}}>Einloggen</button>
       </div>
@@ -572,7 +504,6 @@ function AdminPage({ registrations }) {
         <button onClick={()=>setAuthed(false)} style={{background:"transparent",border:"1px solid rgba(26,58,42,.2)",color:MUTED,padding:".4rem .9rem",borderRadius:".5rem",fontSize:".8rem",cursor:"pointer"}}>Ausloggen</button>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:"1rem",marginBottom:"2rem"}}>
-
         <div style={{background:G,borderRadius:"1rem",padding:"1.4rem"}}><div style={{fontSize:"2.4rem",color:LIME}}>{allRegs.length}</div><div style={{fontSize:".75rem",color:"rgba(245,240,232,.55)"}}>Anmeldungen</div></div>
         <div style={{background:"#fff",borderRadius:"1rem",padding:"1.4rem",border:"1px solid rgba(26,58,42,.07)"}}><div style={{fontSize:"2.4rem",color:G}}>{[...new Set(allRegs.map(r=>r.klasse))].length}</div><div style={{fontSize:".75rem",color:MUTED}}>Klassen</div></div>
         <div style={{background:"#fff",borderRadius:"1rem",padding:"1.4rem",border:"1px solid rgba(26,58,42,.07)"}}><div style={{fontSize:"2.4rem",color:G}}>{allRegs.reduce((s,r)=>s+(r.companies||"").split(", ").filter(Boolean).length,0)}</div><div style={{fontSize:".75rem",color:MUTED}}>Workshop-Wuensche</div></div>
@@ -619,7 +550,6 @@ function Nav({ setPage }) {
     else setPage(p);
   };
   const links = [["Workshops","workshops"],["Beyond School","beyond"],["Mentoring","mentoring"],["Kooperationen","kooperation"],["Kontakt","kontakt"]];
-  const isMobile = window.innerWidth <= 820;
   return (
     <>
       <nav className="nav">
@@ -642,7 +572,7 @@ function Nav({ setPage }) {
       {menuOpen && (
         <div style={{position:"fixed",top:"4.5rem",left:0,right:0,background:"rgba(245,240,232,.98)",backdropFilter:"blur(12px)",padding:"1rem 5vw 1.5rem",borderBottom:"1px solid rgba(26,58,42,.1)",zIndex:99,display:"flex",flexDirection:"column",gap:".3rem"}}>
           {links.map(([l,p])=>(
-            <button key={p} onClick={()=>go(p)} style={{fontSize:".95rem",fontWeight:600,color:"#1a3a2a",padding:".8rem 0",borderBottom:"1px solid rgba(26,58,42,.06)",cursor:"pointer",border:"none",borderTop:"none",borderLeft:"none",borderRight:"none",borderBottom:"1px solid rgba(26,58,42,.06)",background:"none",textAlign:"left",width:"100%"}}>{l}</button>
+            <button key={p} onClick={()=>go(p)} style={{fontSize:".95rem",fontWeight:600,color:"#1a3a2a",padding:".8rem 0",borderBottom:"1px solid rgba(26,58,42,.06)",cursor:"pointer",border:"none",background:"none",textAlign:"left",width:"100%"}}>{l}</button>
           ))}
           <button onClick={()=>{setPage("anmeldung");setMenuOpen(false);}} style={{fontSize:".95rem",fontWeight:700,color:"#7ab828",padding:".8rem 0",background:"none",border:"none",textAlign:"left",cursor:"pointer"}}>→ Jetzt anmelden</button>
           <button onClick={()=>{setPage("admin");setMenuOpen(false);}} style={{fontSize:".82rem",color:"#6b6b5a",padding:".5rem 0",background:"none",border:"none",textAlign:"left",cursor:"pointer"}}>Admin</button>
